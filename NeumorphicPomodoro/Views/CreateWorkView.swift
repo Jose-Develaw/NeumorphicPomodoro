@@ -32,30 +32,20 @@ struct CreateWorkView: View {
                             .foregroundColor(.black.opacity(0.8))
                       }
                       .padding()
-                      .background(
-                         RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.offWhite)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(.gray, lineWidth: 4)
-                                    .blur(radius: 4)
-                                    .offset(x: 2, y: 2)
-                                    .mask {
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .fill(LinearGradient(colors: [.black, .clear], startPoint: UnitPoint(x: 0.495, y: 0), endPoint: UnitPoint(x: 0.505, y: 1)))
-                                    }
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(.white, lineWidth: 8)
-                                    .blur(radius: 4)
-                                    .offset(x: -2, y: -2)
-                                    .mask {
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .fill(LinearGradient(colors: [.clear, .black], startPoint: UnitPoint(x: 0.495, y: 0), endPoint: UnitPoint(x: 0.505, y: 1)))
-                                    }
-                            )
-                       )
+                      .background(ZStack{
+                          RoundedRectangle(cornerRadius: 20)
+                              .fill(Color.offWhite)
+                                      RoundedRectangle(cornerRadius: 20)
+                              .stroke(Color.gray, lineWidth: 4)
+                                          .blur(radius: 4)
+                                          .offset(x: 1, y: 0.5)
+                                          .mask(RoundedRectangle(cornerRadius: 20).fill(LinearGradient(colors: [Color.gray, Color.clear], startPoint: .top, endPoint: .bottom)))
+                                      RoundedRectangle(cornerRadius: 20)
+                              .stroke(Color.white, lineWidth: 8)
+                                          .blur(radius: 4)
+                                          .offset(x: -1, y: -1.5)
+                                          .mask(RoundedRectangle(cornerRadius: 20).fill(LinearGradient(colors: [Color.clear, Color.white], startPoint: .top, endPoint: .bottom)))
+                      })
                     
                     HStack {
                         Button{
@@ -78,7 +68,6 @@ struct CreateWorkView: View {
                     }
                 }
                 .padding()
-                .applyCardStyle()
                 
                 Spacer()
                 
