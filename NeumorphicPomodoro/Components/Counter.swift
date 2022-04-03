@@ -75,7 +75,7 @@ struct Counter : View {
                 )
                 .frame(maxWidth: 270, maxHeight: 270)
             if(pomodoroState != .Empty){
-                Arc(startAngle: .degrees(0), tickingAmount: 240, clockwise: true)
+                Arc(startAngle: .degrees(0), tickingAmount: work.tickingAmount, clockwise: true)
                     .strokeBorder(LinearGradient(.purple, .pink), style: StrokeStyle(lineWidth: 12.5, lineCap: .round, lineJoin: .round))
                     .frame(maxWidth: 285, maxHeight: 285)
             }

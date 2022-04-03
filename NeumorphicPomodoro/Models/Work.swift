@@ -15,6 +15,7 @@ class Work : ObservableObject, Identifiable{
     @Published var currentPomodoro = 0
     @Published var currentRest = 0
     @Published var timeRemaining = 0
+    @Published var currentPomodoroLength = 0
     
     var type : String {
         isWork ? "Work" : "Personal"
@@ -26,6 +27,10 @@ class Work : ObservableObject, Identifiable{
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = .pad
         return formatter.string(from: TimeInterval(timeRemaining))!
+    }
+    
+    var tickingAmount : Double {
+        Double(timeRemaining) / Double(currentPomodoroLength) * 360
     }
     
 }

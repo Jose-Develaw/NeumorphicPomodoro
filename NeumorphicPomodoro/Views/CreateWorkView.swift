@@ -33,16 +33,17 @@ struct CreateWorkView: View {
                     HStack {
                         TextField("Short description", text: $work.task)
                             .font(.title2)
-                            
                             .foregroundColor(.black.opacity(0.8))
                       }
                     .padding()
                     .background(ShallowConcaveView(cornerRadius: 10))
+                    .frame(maxWidth: 350)
                     
                     CustomToggle(width: 350, height: 60, toggleWidthOffset: 50, cornerRadius: 10, padding: 10, toggleAction: toggleType)
                     
                     Button{
                         work.timeRemaining = 1500
+                        work.currentPomodoroLength = 1500
                         work.currentPomodoro = 1
                         pomodoroState = .Paused
                         dismiss()
@@ -63,7 +64,6 @@ struct CreateWorkView: View {
             }
             .padding()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.offWhite.edgesIgnoringSafeArea(.all))
     }
     

@@ -98,12 +98,16 @@ struct ContentView: View {
         alertMessage = "Do you want to finish the current task?"
         alertTitle = "Stop task"
         alertConfirmAction = {
-            work.isWork = true
-            work.timeRemaining = 0
-            work.task = ""
-            work.currentPomodoro = 0
-            work.currentRest = 0
-            pomodoroState = .Empty
+            withAnimation{
+                work.isWork = true
+                work.timeRemaining = 0
+                work.task = ""
+                work.currentPomodoro = 0
+                work.currentRest = 0
+                work.currentPomodoroLength = 0
+                pomodoroState = .Empty
+            }
+            
         }
         
         showAlert = true

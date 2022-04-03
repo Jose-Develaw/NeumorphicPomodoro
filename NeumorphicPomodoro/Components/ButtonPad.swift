@@ -43,7 +43,7 @@ struct ButtonPad: View {
                 
             }label: {
                 if(!disabled){
-                    Image(systemName: pomodoroState == .Paused ? "pause": "play")
+                    Image(systemName: pomodoroState == .Playing ? "pause": "play")
                         .font(.largeTitle)
                         .foregroundStyle(LinearGradient(.purple, .pink))
                 } else {
