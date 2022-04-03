@@ -18,7 +18,7 @@ struct Counter : View {
                 Text("Time left")
                     .font(.title3)
                     .foregroundColor(.gray)
-                Text("00:00")
+                Text(work.remainingClock)
                     .font(.largeTitle.bold())
                     .foregroundColor(.black.opacity(0.8))
                 Text("P\(work.currentPomodoro)")

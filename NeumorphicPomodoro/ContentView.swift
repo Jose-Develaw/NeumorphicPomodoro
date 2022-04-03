@@ -18,6 +18,11 @@ struct ContentView: View {
     @State var isCreationPresented : Bool = false
     @StateObject var work = Work()
     
+    @State var showAlert = false
+    @State var alertTitle = ""
+    @State var alertMessage = ""
+    @State var alertConfirmAction : () -> Void = {}
+    
     
     var body: some View {
         ZStack{
@@ -71,7 +76,7 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                ButtonPad(isPlaying: $isPlaying, pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true})
+                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert)
                 Spacer()
             }
             .padding()
@@ -79,8 +84,29 @@ struct ContentView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $isCreationPresented){
-            CreateWorkView(work: work)
+            CreateWorkView(pomodoroState: $pomodoroState, work: work)
         }
+        .alert(alertTitle, isPresented: $showAlert){
+            Button("Confirm", role: .none, action: alertConfirmAction)
+            Button("Cancel", role: .cancel, action: {})
+        } message: {
+            Text(alertMessage)
+        }
+    }
+    
+    func showCancelAlert() {
+        alertMessage = "Do you want to finish the current task?"
+        alertTitle = "Stop task"
+        alertConfirmAction = {
+            work.isWork = true
+            work.timeRemaining = 0
+            work.task = ""
+            work.currentPomodoro = 0
+            work.currentRest = 0
+            pomodoroState = .Empty
+        }
+        
+        showAlert = true
     }
 }
 

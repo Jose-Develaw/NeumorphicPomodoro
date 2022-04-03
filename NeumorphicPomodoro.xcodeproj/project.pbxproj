@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C4173E0027F9008700A3211E /* CreateWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4173DFF27F9008700A3211E /* CreateWorkView.swift */; };
 		C4173E0327F902E200A3211E /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4173E0227F902E200A3211E /* Work.swift */; };
+		C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */; };
+		C4315CDC27F9DEFA005FB849 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */; };
 		C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */; };
 		C45FAEFB27F79861006EB3E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEFA27F79861006EB3E8 /* ContentView.swift */; };
 		C45FAEFD27F79862006EB3E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C45FAEFC27F79862006EB3E8 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		C4173DFF27F9008700A3211E /* CreateWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkView.swift; sourceTree = "<group>"; };
 		C4173E0227F902E200A3211E /* Work.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
+		C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShallowConcaveView.swift; sourceTree = "<group>"; };
+		C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
 		C45FAEF527F79861006EB3E8 /* NeumorphicPomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeumorphicPomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicPomodoroApp.swift; sourceTree = "<group>"; };
 		C45FAEFA27F79861006EB3E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 				C4C97D6227F85BE9000A5363 /* NeumorphicButtonStyle.swift */,
 				C4C97D6927F8626D000A5363 /* CardModifier.swift */,
 				C4C97D6B27F862B6000A5363 /* ColorExtensions.swift */,
+				C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 				C4C97D6527F85D65000A5363 /* Counter.swift */,
 				C4C97D6727F85EB1000A5363 /* Header.swift */,
 				C4C97D6D27F8634A000A5363 /* ButtonPad.swift */,
+				C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 				C45FAEFB27F79861006EB3E8 /* ContentView.swift in Sources */,
 				C4C97D6327F85BE9000A5363 /* NeumorphicButtonStyle.swift in Sources */,
 				C4C97D6E27F8634A000A5363 /* ButtonPad.swift in Sources */,
+				C4315CDC27F9DEFA005FB849 /* CustomToggle.swift in Sources */,
 				C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */,
 				C4173E0027F9008700A3211E /* CreateWorkView.swift in Sources */,
 				C4C97D6827F85EB1000A5363 /* Header.swift in Sources */,
@@ -207,6 +214,7 @@
 				C4173E0327F902E200A3211E /* Work.swift in Sources */,
 				C45FAF0727F7CEE2006EB3E8 /* Arc.swift in Sources */,
 				C4C97D6C27F862B6000A5363 /* ColorExtensions.swift in Sources */,
+				C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

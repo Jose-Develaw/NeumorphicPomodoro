@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ButtonPad: View {
     
-    @Binding var isPlaying : Bool
     @Binding var pomodoroState : PomodoroState
     var showCreation : () -> Void
+    var showCancelAlert : () -> Void
     var disabled : Bool {
         pomodoroState == .Empty
     }
@@ -20,8 +20,7 @@ struct ButtonPad: View {
         HStack(spacing: 5){
            
             Button{
-                isPlaying = false
-                pomodoroState = .Empty
+                showCancelAlert()
             }label: {
                 Image(systemName: "stop")
                     .font(.title)
@@ -33,15 +32,18 @@ struct ButtonPad: View {
             
             Button{
                 if(disabled){
-                    pomodoroState = .Paused
                     showCreation()
                 } else {
-                    isPlaying.toggle()
+                    if (pomodoroState == .Paused){
+                        pomodoroState = .Playing
+                    } else {
+                        pomodoroState = .Paused
+                    }   
                 }
                 
             }label: {
                 if(!disabled){
-                    Image(systemName: isPlaying ? "pause": "play")
+                    Image(systemName: pomodoroState == .Paused ? "pause": "play")
                         .font(.largeTitle)
                         .foregroundStyle(LinearGradient(.purple, .pink))
                 } else {
@@ -77,6 +79,6 @@ struct ButtonPad: View {
 
 struct ButtonPad_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonPad(isPlaying: .constant(false), pomodoroState: .constant(.Empty), showCreation: {})
+        ButtonPad(pomodoroState: .constant(.Empty), showCreation: {}, showCancelAlert: {})
     }
 }
