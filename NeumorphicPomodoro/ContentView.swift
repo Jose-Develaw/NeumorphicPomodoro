@@ -61,11 +61,11 @@ struct ContentView: View {
                             .font(.title3)
                             .foregroundColor(.gray)
                     } else {
-                        Text("Name of current task")
+                        Text(work.task)
                             .font(.title2.bold())
                             .foregroundColor(.black.opacity(0.8))
                         
-                        Text("Kind of task")
+                        Text(work.type)
                             .font(.title3)
                         .foregroundColor(.gray)
                     }

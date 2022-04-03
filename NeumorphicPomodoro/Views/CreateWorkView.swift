@@ -27,8 +27,9 @@ struct CreateWorkView: View {
                 
                 VStack{
                     HStack {
-                        TextField("Task name", text: $work.task)
-                            .foregroundColor(.black)
+                        TextField("Short description", text: $work.task)
+                            .font(.title2)
+                            .foregroundColor(.black.opacity(0.8))
                       }
                       .padding()
                       .background(
@@ -38,7 +39,7 @@ struct CreateWorkView: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(.gray, lineWidth: 4)
                                     .blur(radius: 4)
-                                    .offset(x: 1, y: 2)
+                                    .offset(x: 2, y: 2)
                                     .mask {
                                         RoundedRectangle(cornerRadius: 20)
                                             .fill(LinearGradient(colors: [.black, .clear], startPoint: UnitPoint(x: 0.495, y: 0), endPoint: UnitPoint(x: 0.505, y: 1)))
@@ -48,20 +49,33 @@ struct CreateWorkView: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(.white, lineWidth: 8)
                                     .blur(radius: 4)
-                                    .offset(x: -2, y: -1)
+                                    .offset(x: -2, y: -2)
                                     .mask {
                                         RoundedRectangle(cornerRadius: 20)
                                             .fill(LinearGradient(colors: [.clear, .black], startPoint: UnitPoint(x: 0.495, y: 0), endPoint: UnitPoint(x: 0.505, y: 1)))
                                     }
                             )
                        )
-                    Picker("Type", selection: $work.type){
-                        ForEach(pickerOptions, id: \.self){
-                            Text($0)
+                    
+                    HStack {
+                        Button{
+                            work.type = "Work"
+                        }label: {
+                            Text("Work")
+                                .foregroundStyle(work.type == "Personal" ? LinearGradient(.gray) : LinearGradient(.purple, .pink))
                         }
+                        .buttonStyle(NeumorphicButtonStyle(width: 100, heigth: 70, shape: RoundedRectangle(cornerRadius: 20)))
+                        .padding(10)
+                        
+                        Button{
+                            work.type = "Personal"
+                        }label: {
+                            Text("Personal")
+                                .foregroundStyle(work.type == "Work" ? LinearGradient(.gray) : LinearGradient(.purple, .pink))
+                        }
+                        .buttonStyle(NeumorphicButtonStyle(width: 100, heigth: 70, shape: RoundedRectangle(cornerRadius: 20)))
+                        .padding(10)
                     }
-                    .pickerStyle(.segmented)
-                    .colorMultiply(.offWhite)
                 }
                 .padding()
                 .applyCardStyle()
