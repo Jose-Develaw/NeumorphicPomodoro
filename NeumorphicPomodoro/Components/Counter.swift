@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct Counter : View {
+    
+    @Binding var pomodoroState : PomodoroState
+    @ObservedObject var work : Work
+    
     var body: some View {
         ZStack{
             VStack(spacing: 10){
                 Text("Time left")
                     .font(.title3)
                     .foregroundColor(.gray)
-                Text("20:00")
+                Text("00:00")
                     .font(.largeTitle.bold())
                     .foregroundColor(.black.opacity(0.8))
-                Text("P1")
+                Text("P\(work.currentPomodoro)")
                     .font(.title)
                     .foregroundColor(.gray)
             }
@@ -70,9 +74,11 @@ struct Counter : View {
                         }
                 )
                 .frame(maxWidth: 270, maxHeight: 270)
-            Arc(startAngle: .degrees(0), tickingAmount: 240, clockwise: true)
-                .strokeBorder(LinearGradient(.purple, .pink), style: StrokeStyle(lineWidth: 12.5, lineCap: .round, lineJoin: .round))
-                .frame(maxWidth: 285, maxHeight: 285)
+            if(pomodoroState != .Empty){
+                Arc(startAngle: .degrees(0), tickingAmount: 240, clockwise: true)
+                    .strokeBorder(LinearGradient(.purple, .pink), style: StrokeStyle(lineWidth: 12.5, lineCap: .round, lineJoin: .round))
+                    .frame(maxWidth: 285, maxHeight: 285)
+            }
         }
     }
 }
