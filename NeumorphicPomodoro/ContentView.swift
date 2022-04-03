@@ -5,6 +5,7 @@
 //  Created by José Ibáñez Bengoechea on 1/4/22.
 //
 
+import Combine
 import SwiftUI
 
 enum PomodoroState {
@@ -22,6 +23,10 @@ struct ContentView: View {
     @State var alertTitle = ""
     @State var alertMessage = ""
     @State var alertConfirmAction : () -> Void = {}
+    
+    //Timer
+    @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
+    @State var connectedTimer: Cancellable? = nil
     
     
     var body: some View {
@@ -76,7 +81,7 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert)
+                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, instantiateTimer: instantiateTimer, cancelTimer: cancelTimer)
                 Spacer()
             }
             .padding()
@@ -91,6 +96,11 @@ struct ContentView: View {
             Button("Cancel", role: .cancel, action: {})
         } message: {
             Text(alertMessage)
+        }
+        .onReceive(timer){ _ in
+            if(pomodoroState == .Playing){
+                work.timeRemaining -= 1
+            }
         }
     }
     
@@ -111,6 +121,17 @@ struct ContentView: View {
         }
         
         showAlert = true
+    }
+    
+    func instantiateTimer() {
+            self.timer = Timer.publish(every: 1, on: .main, in: .common)
+            self.connectedTimer = self.timer.connect()
+            return
+    }
+        
+    func cancelTimer() {
+        self.connectedTimer?.cancel()
+        return
     }
 }
 
