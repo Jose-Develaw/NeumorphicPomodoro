@@ -9,13 +9,24 @@ import Foundation
 
 class Work : ObservableObject, Identifiable{
     
+    enum TimeType {
+        case pomodoro, rest
+    }
+    
+    enum TaskType : String{
+        case work = "Work",
+        personal = "Personal"
+    }
+    
     @Published var id = UUID()
     @Published var isWork = true
     @Published var task = ""
     @Published var currentPomodoro = 0
+    @Published var totalPomodoros = 5
     @Published var currentRest = 0
     @Published var timeRemaining = 0
     @Published var currentPomodoroLength = 0
+    @Published var currentType = TimeType.pomodoro
     
     var type : String {
         isWork ? "Work" : "Personal"
@@ -33,4 +44,21 @@ class Work : ObservableObject, Identifiable{
         Double(timeRemaining) / Double(currentPomodoroLength) * 360
     }
     
+    func createSession() {
+        currentPomodoro += 1
+        timeRemaining = 10
+        currentPomodoroLength = 10
+    }
+    
+    func changeRound () {
+        if(currentType == .pomodoro){
+            currentType = .rest
+            currentRest += 1
+        } else {
+            currentType = .pomodoro
+            currentPomodoro += 1
+        }
+        timeRemaining = 10
+        currentPomodoroLength = 10
+    }
 }

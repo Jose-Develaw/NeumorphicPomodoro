@@ -11,6 +11,7 @@
 		C4173E0327F902E200A3211E /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4173E0227F902E200A3211E /* Work.swift */; };
 		C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */; };
 		C4315CDC27F9DEFA005FB849 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */; };
+		C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */; };
 		C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */; };
 		C45FAEFB27F79861006EB3E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEFA27F79861006EB3E8 /* ContentView.swift */; };
 		C45FAEFD27F79862006EB3E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C45FAEFC27F79862006EB3E8 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		C4173E0227F902E200A3211E /* Work.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
 		C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShallowConcaveView.swift; sourceTree = "<group>"; };
 		C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
+		C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		C45FAEF527F79861006EB3E8 /* NeumorphicPomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeumorphicPomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicPomodoroApp.swift; sourceTree = "<group>"; };
 		C45FAEFA27F79861006EB3E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C4315CDD27FB8B97005FB849 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		C45FAEEC27F79861006EB3E8 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +99,7 @@
 		C45FAEF727F79861006EB3E8 /* NeumorphicPomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				C4315CDD27FB8B97005FB849 /* Delegates */,
 				C4173E0127F9025300A3211E /* Models */,
 				C4173DFE27F9005A00A3211E /* Views */,
 				C4C97D6427F85D44000A5363 /* Components */,
@@ -213,6 +224,7 @@
 				C4C97D6A27F8626D000A5363 /* CardModifier.swift in Sources */,
 				C4173E0327F902E200A3211E /* Work.swift in Sources */,
 				C45FAF0727F7CEE2006EB3E8 /* Arc.swift in Sources */,
+				C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */,
 				C4C97D6C27F862B6000A5363 /* ColorExtensions.swift in Sources */,
 				C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */,
 			);

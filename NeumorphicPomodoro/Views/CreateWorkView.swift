@@ -42,9 +42,7 @@ struct CreateWorkView: View {
                     CustomToggle(width: 350, height: 60, toggleWidthOffset: 50, cornerRadius: 10, padding: 10, toggleAction: toggleType)
                     
                     Button{
-                        work.timeRemaining = 1500
-                        work.currentPomodoroLength = 1500
-                        work.currentPomodoro = 1
+                        work.createSession()
                         pomodoroState = .Paused
                         dismiss()
                     }label: {

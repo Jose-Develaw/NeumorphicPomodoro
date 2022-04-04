@@ -13,7 +13,7 @@ enum PomodoroState {
 }
 
 struct ContentView: View {
-    
+    @StateObject var delegate = NotificationDelegate()
     @Environment(\.scenePhase) var scenePhase
     @State var savedDate : Date = Date.now
     
@@ -84,7 +84,7 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, instantiateTimer: instantiateTimer, cancelTimer: cancelTimer)
+                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, instantiateTimer: instantiateTimer, cancelTimer: cancelTimer, changeRound: changeRound)
                 Spacer()
             }
             .padding()
@@ -100,9 +100,16 @@ struct ContentView: View {
         } message: {
             Text(alertMessage)
         }
+        .onAppear{
+            delegate.requestAuthorization()
+        }
         .onReceive(timer){ _ in
-            if(pomodoroState == .Playing){
+            if(pomodoroState == .Playing && work.timeRemaining > 0){
                 work.timeRemaining -= 1
+            } else {
+                pomodoroState = .Paused
+                cancelTimer()
+                changeRound()
             }
         }
         .onChange(of: scenePhase) { newPhase in
@@ -126,6 +133,8 @@ struct ContentView: View {
         alertMessage = "Do you want to finish the current task?"
         alertTitle = "Stop task"
         alertConfirmAction = {
+            cancelTimer()
+            pomodoroState = .Empty
             withAnimation{
                 work.isWork = true
                 work.timeRemaining = 0
@@ -133,23 +142,29 @@ struct ContentView: View {
                 work.currentPomodoro = 0
                 work.currentRest = 0
                 work.currentPomodoroLength = 0
-                pomodoroState = .Empty
+                work.currentType = .pomodoro
+                work.totalPomodoros = 5
             }
-            
         }
         
         showAlert = true
     }
     
     func instantiateTimer() {
-            self.timer = Timer.publish(every: 1, on: .main, in: .common)
-            self.connectedTimer = self.timer.connect()
-            return
+        delegate.createNotification(work)
+        self.timer = Timer.publish(every: 1, on: .main, in: .common)
+        self.connectedTimer = self.timer.connect()
+        return
     }
         
     func cancelTimer() {
+        delegate.cancelNotification()
         self.connectedTimer?.cancel()
         return
+    }
+    
+    func changeRound() {
+        work.changeRound()
     }
 }
 
@@ -158,3 +173,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(savedDate: Date.now)
     }
 }
+
+

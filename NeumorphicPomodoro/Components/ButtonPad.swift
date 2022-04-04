@@ -14,6 +14,7 @@ struct ButtonPad: View {
     var showCancelAlert : () -> Void
     var instantiateTimer : () -> Void
     var cancelTimer : () -> Void
+    var changeRound : () -> Void
     var disabled : Bool {
         pomodoroState == .Empty
     }
@@ -61,7 +62,9 @@ struct ButtonPad: View {
     
            
             Button{
-                print("Button pressed")
+                cancelTimer()
+                pomodoroState = .Paused
+                changeRound()
             }label: {
                 Image(systemName: "forward.end.alt")
                     .font(.title)
@@ -83,6 +86,6 @@ struct ButtonPad: View {
 
 struct ButtonPad_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonPad(pomodoroState: .constant(.Empty), showCreation: {}, showCancelAlert: {}, instantiateTimer: {}, cancelTimer: {})
+        ButtonPad(pomodoroState: .constant(.Empty), showCreation: {}, showCancelAlert: {}, instantiateTimer: {}, cancelTimer: {}, changeRound: {})
     }
 }

@@ -21,7 +21,7 @@ struct Counter : View {
                 Text(work.remainingClock)
                     .font(.largeTitle.bold())
                     .foregroundColor(.black.opacity(0.8))
-                Text("P\(work.currentPomodoro)")
+                Text("\(work.currentType == .pomodoro ? "P" : "R")\(work.currentPomodoro)")
                     .font(.title)
                     .foregroundColor(.gray)
             }
