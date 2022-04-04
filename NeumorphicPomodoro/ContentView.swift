@@ -14,6 +14,9 @@ enum PomodoroState {
 
 struct ContentView: View {
     
+    @Environment(\.scenePhase) var scenePhase
+    @State var savedDate : Date = Date.now
+    
     @State var pomodoroState = PomodoroState.Empty
     @State var isPlaying = false
     @State var isCreationPresented : Bool = false
@@ -102,6 +105,21 @@ struct ContentView: View {
                 work.timeRemaining -= 1
             }
         }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                let interval = Date.now.timeIntervalSinceReferenceDate - savedDate.timeIntervalSinceReferenceDate
+                if(pomodoroState == .Playing)
+                {
+                    work.timeRemaining -= Int(interval)
+                }
+                print(interval)
+            } else if newPhase == .inactive {
+                print("Inactive")
+            } else if newPhase == .background {
+                print("Background")
+                savedDate = Date.now
+            }
+        }
     }
     
     func showCancelAlert() {
@@ -137,6 +155,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(savedDate: Date.now)
     }
 }
