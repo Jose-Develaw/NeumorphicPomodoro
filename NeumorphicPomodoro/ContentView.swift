@@ -125,6 +125,7 @@ struct ContentView: View {
                 if(pomodoroState == .Playing)
                 {
                     work.timeRemaining -= Int(interval)
+                    instantiateTimer()
                 }
                 print(interval)
             } else if newPhase == .background {
