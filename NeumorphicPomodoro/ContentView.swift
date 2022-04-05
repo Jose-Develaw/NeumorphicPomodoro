@@ -14,11 +14,12 @@ enum PomodoroState {
 
 struct ContentView: View {
     @StateObject var delegate = NotificationDelegate()
+    
     @Environment(\.scenePhase) var scenePhase
     @State var savedDate : Date = Date.now
     
     @State var pomodoroState = PomodoroState.Empty
-    @State var isPlaying = false
+    
     @State var isCreationPresented : Bool = false
     @StateObject var work = Work()
     
@@ -84,7 +85,7 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, instantiateTimer: instantiateTimer, cancelTimer: cancelTimer, changeRound: changeRound)
+                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, changeRound: changeRound)
                 Spacer()
             }
             .padding()
@@ -108,8 +109,14 @@ struct ContentView: View {
                 work.timeRemaining -= 1
             } else {
                 pomodoroState = .Paused
-                cancelTimer()
                 changeRound()
+            }
+        }
+        .onChange(of: pomodoroState) { _ in
+            if (pomodoroState == .Paused || pomodoroState == .Empty) {
+                cancelTimer()
+            } else {
+                instantiateTimer()
             }
         }
         .onChange(of: scenePhase) { newPhase in
@@ -120,10 +127,7 @@ struct ContentView: View {
                     work.timeRemaining -= Int(interval)
                 }
                 print(interval)
-            } else if newPhase == .inactive {
-                print("Inactive")
             } else if newPhase == .background {
-                print("Background")
                 savedDate = Date.now
             }
         }
@@ -133,7 +137,6 @@ struct ContentView: View {
         alertMessage = "Do you want to finish the current task?"
         alertTitle = "Stop task"
         alertConfirmAction = {
-            cancelTimer()
             pomodoroState = .Empty
             withAnimation{
                 work.isWork = true

@@ -12,8 +12,6 @@ struct ButtonPad: View {
     @Binding var pomodoroState : PomodoroState
     var showCreation : () -> Void
     var showCancelAlert : () -> Void
-    var instantiateTimer : () -> Void
-    var cancelTimer : () -> Void
     var changeRound : () -> Void
     var disabled : Bool {
         pomodoroState == .Empty
@@ -39,14 +37,12 @@ struct ButtonPad: View {
                 } else {
                     if (pomodoroState == .Paused){
                         pomodoroState = .Playing
-                        instantiateTimer()
                     } else {
                         pomodoroState = .Paused
-                        cancelTimer()
                     }   
                 }
                 
-            }label: {
+            } label: {
                 if(!disabled){
                     Image(systemName: pomodoroState == .Playing ? "pause": "play")
                         .font(.largeTitle)
@@ -62,7 +58,6 @@ struct ButtonPad: View {
     
            
             Button{
-                cancelTimer()
                 pomodoroState = .Paused
                 changeRound()
             }label: {
@@ -86,6 +81,6 @@ struct ButtonPad: View {
 
 struct ButtonPad_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonPad(pomodoroState: .constant(.Empty), showCreation: {}, showCancelAlert: {}, instantiateTimer: {}, cancelTimer: {}, changeRound: {})
+        ButtonPad(pomodoroState: .constant(.Empty), showCreation: {}, showCancelAlert: {}, changeRound: {})
     }
 }
