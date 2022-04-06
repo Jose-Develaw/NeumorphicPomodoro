@@ -10,7 +10,7 @@ import SwiftUI
 struct Counter : View {
     
     @Binding var pomodoroState : PomodoroState
-    @ObservedObject var work : Work
+    @ObservedObject var viewModel : ContentView.ViewModel
     
     var body: some View {
         ZStack{
@@ -18,10 +18,10 @@ struct Counter : View {
                 Text("Time left")
                     .font(.title3)
                     .foregroundColor(.gray)
-                Text(work.remainingClock)
+                Text(viewModel.remainingClock)
                     .font(.largeTitle.bold())
                     .foregroundColor(.black.opacity(0.8))
-                Text("\(work.currentType == .pomodoro ? "P" : "R")\(work.currentPomodoro)")
+                Text("\(viewModel.currentSession.currentType == .pomodoro ? "P" : "R")\(viewModel.currentSession.currentPomodoro)")
                     .font(.title)
                     .foregroundColor(.gray)
             }
@@ -75,7 +75,7 @@ struct Counter : View {
                 )
                 .frame(maxWidth: 270, maxHeight: 270)
             if(pomodoroState != .Empty){
-                Arc(startAngle: .degrees(0), tickingAmount: work.tickingAmount, clockwise: true)
+                Arc(startAngle: .degrees(0), tickingAmount: viewModel.tickingAmount, clockwise: true)
                     .strokeBorder(LinearGradient(.purple, .pink), style: StrokeStyle(lineWidth: 12.5, lineCap: .round, lineJoin: .round))
                     .frame(maxWidth: 285, maxHeight: 285)
             }

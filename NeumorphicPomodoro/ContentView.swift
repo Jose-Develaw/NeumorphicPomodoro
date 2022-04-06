@@ -13,25 +13,18 @@ enum PomodoroState {
 }
 
 struct ContentView: View {
-    @StateObject var delegate = NotificationDelegate()
+    
+    @StateObject var viewModel = ViewModel()
     
     @Environment(\.scenePhase) var scenePhase
     @State var savedDate : Date = Date.now
-    
     @State var pomodoroState = PomodoroState.Empty
-    
     @State var isCreationPresented : Bool = false
-    
-    @StateObject var work = Work()
     
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertMessage = ""
     @State var alertConfirmAction : () -> Void = {}
-    
-    //Timer
-    @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
-    @State var connectedTimer: Cancellable? = nil
     
     
     var body: some View {
@@ -62,7 +55,7 @@ struct ContentView: View {
                     Spacer()
                     Header()
                     Spacer()
-                    Counter(pomodoroState: $pomodoroState, work: work)
+                    Counter(pomodoroState: $pomodoroState, viewModel: viewModel)
                     Spacer()
                 }
                 
@@ -76,17 +69,17 @@ struct ContentView: View {
                             .font(.title3)
                             .foregroundColor(.gray)
                     } else {
-                        Text(work.task)
+                        Text(viewModel.currentSession.taskName)
                             .font(.title2.bold())
                             .foregroundColor(.black.opacity(0.8))
                         
-                        Text(work.type)
+                        Text(viewModel.currentSession.taskType.rawValue)
                             .font(.title3)
-                        .foregroundColor(.gray)
+                            .foregroundColor(.gray)
                     }
                 }
                 Spacer()
-                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, changeRound: changeRound)
+                ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, changeRound: viewModel.changeRound)
                 Spacer()
             }
             .padding()
@@ -94,7 +87,7 @@ struct ContentView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .sheet(isPresented: $isCreationPresented){
-            CreateWorkView(pomodoroState: $pomodoroState, work: work)
+            CreateWorkView(pomodoroState: $pomodoroState, viewModel: viewModel)
         }
         .alert(alertTitle, isPresented: $showAlert){
             Button("Confirm", role: .none, action: alertConfirmAction)
@@ -103,21 +96,23 @@ struct ContentView: View {
             Text(alertMessage)
         }
         .onAppear{
-            delegate.requestAuthorization()
+            viewModel.delegate.requestAuthorization()
         }
-        .onReceive(timer){ _ in
-            if(pomodoroState == .Playing && work.timeRemaining > 0){
-                work.timeRemaining -= 1
+        .onReceive(viewModel.timer){ _ in
+            print("onReceiveTimer")
+            if(pomodoroState == .Playing && viewModel.currentSession.timeRemaining > 0){
+                viewModel.currentSession.timeRemaining -= 1
             } else {
                 pomodoroState = .Paused
-                changeRound()
+                viewModel.changeRound()
             }
         }
         .onChange(of: pomodoroState) { _ in
             if (pomodoroState == .Paused || pomodoroState == .Empty) {
-                cancelTimer()
+                viewModel.cancelTimer()
             } else {
-                instantiateTimer()
+                print("Receive play")
+                viewModel.instantiateTimer()
             }
         }
         .onChange(of: scenePhase) { newPhase in
@@ -125,9 +120,9 @@ struct ContentView: View {
                 if(pomodoroState == .Playing)
                 {
                     let interval = Date.now.timeIntervalSinceReferenceDate - savedDate.timeIntervalSinceReferenceDate
-                    work.timeRemaining -= Int(interval)
-                    if (work.timeRemaining > 0){
-                        instantiateTimer()
+                    viewModel.currentSession.timeRemaining -= Int(interval)
+                    if (viewModel.currentSession.timeRemaining > 0){
+                        viewModel.instantiateTimer()
                     }
                 }
             } else if newPhase == .background {
@@ -142,38 +137,10 @@ struct ContentView: View {
         alertConfirmAction = {
             pomodoroState = .Empty
             withAnimation{
-                work.isWork = true
-                work.timeRemaining = 0
-                work.task = ""
-                work.currentPomodoro = 0
-                work.currentRest = 0
-                work.currentPomodoroLength = 0
-                work.currentType = .pomodoro
-                work.totalPomodoros = 5
+                viewModel.currentSession = Session()
             }
         }
-        
         showAlert = true
-    }
-    
-    func instantiateTimer() {
-        if(work.timeRemaining > 0){
-            let notificationData = NotificationData(title: "Well done!", subtitle: "Time to rest", timeInterval: Double(work.timeRemaining))
-            delegate.createNotification(notificationData: notificationData)
-        }
-        self.timer = Timer.publish(every: 1, on: .main, in: .common)
-        self.connectedTimer = self.timer.connect()
-        return
-    }
-        
-    func cancelTimer() {
-        delegate.cancelNotification()
-        self.connectedTimer?.cancel()
-        return
-    }
-    
-    func changeRound() {
-        work.changeRound()
     }
 }
 

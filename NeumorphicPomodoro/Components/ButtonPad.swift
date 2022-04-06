@@ -41,7 +41,6 @@ struct ButtonPad: View {
                         pomodoroState = .Paused
                     }   
                 }
-                
             } label: {
                 if(!disabled){
                     Image(systemName: pomodoroState == .Playing ? "pause": "play")

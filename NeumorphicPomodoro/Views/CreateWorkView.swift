@@ -10,9 +10,9 @@ import SwiftUI
 struct CreateWorkView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var pomodoroState : PomodoroState
-    @ObservedObject var work : Work
+    @ObservedObject var viewModel: ContentView.ViewModel
     var disabled : Bool {
-        work.task.isEmpty
+        viewModel.currentSession.taskName.isEmpty
     }
     
     var body: some View {
@@ -31,7 +31,7 @@ struct CreateWorkView: View {
                 
                 VStack{
                     HStack {
-                        TextField("Short description", text: $work.task)
+                        TextField("Short description", text: $viewModel.currentSession.taskName)
                             .font(.title2)
                             .foregroundColor(.black.opacity(0.8))
                       }
@@ -42,7 +42,7 @@ struct CreateWorkView: View {
                     CustomToggle(width: 350, height: 60, toggleWidthOffset: 50, cornerRadius: 10, padding: 10, toggleAction: toggleType)
                     
                     Button{
-                        work.createSession()
+                        viewModel.createSession()
                         pomodoroState = .Paused
                         dismiss()
                     }label: {
@@ -66,14 +66,12 @@ struct CreateWorkView: View {
     }
     
     func toggleType(){
-        work.isWork.toggle()
+        viewModel.changeTaskType()
     }
 }
 
-
-
 struct CreateWorkView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateWorkView(pomodoroState: .constant(.Empty), work: Work())
+        CreateWorkView(pomodoroState: .constant(.Empty), viewModel: ContentView.ViewModel())
     }
 }

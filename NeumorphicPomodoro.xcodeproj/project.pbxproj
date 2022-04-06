@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C4173E0027F9008700A3211E /* CreateWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4173DFF27F9008700A3211E /* CreateWorkView.swift */; };
-		C4173E0327F902E200A3211E /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4173E0227F902E200A3211E /* Work.swift */; };
 		C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */; };
 		C4315CDC27F9DEFA005FB849 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */; };
 		C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */; };
@@ -18,6 +17,8 @@
 		C45FAF0027F79862006EB3E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C45FAEFF27F79862006EB3E8 /* Preview Assets.xcassets */; };
 		C45FAF0727F7CEE2006EB3E8 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAF0627F7CEE2006EB3E8 /* Arc.swift */; };
 		C46F490227FDBE8A0045A895 /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F490127FDBE8A0045A895 /* NotificationData.swift */; };
+		C46F490527FE23150045A895 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F490427FE23150045A895 /* ContentViewModel.swift */; };
+		C46F490727FE23770045A895 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F490627FE23770045A895 /* Session.swift */; };
 		C4C97D6327F85BE9000A5363 /* NeumorphicButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6227F85BE9000A5363 /* NeumorphicButtonStyle.swift */; };
 		C4C97D6627F85D65000A5363 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6527F85D65000A5363 /* Counter.swift */; };
 		C4C97D6827F85EB1000A5363 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6727F85EB1000A5363 /* Header.swift */; };
@@ -28,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		C4173DFF27F9008700A3211E /* CreateWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkView.swift; sourceTree = "<group>"; };
-		C4173E0227F902E200A3211E /* Work.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
 		C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShallowConcaveView.swift; sourceTree = "<group>"; };
 		C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
 		C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +39,8 @@
 		C45FAEFF27F79862006EB3E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C45FAF0627F7CEE2006EB3E8 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		C46F490127FDBE8A0045A895 /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationData.swift; sourceTree = "<group>"; };
+		C46F490427FE23150045A895 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		C46F490627FE23770045A895 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		C4C97D6227F85BE9000A5363 /* NeumorphicButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicButtonStyle.swift; sourceTree = "<group>"; };
 		C4C97D6527F85D65000A5363 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		C4C97D6727F85EB1000A5363 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -69,8 +71,8 @@
 		C4173E0127F9025300A3211E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C4173E0227F902E200A3211E /* Work.swift */,
 				C46F490127FDBE8A0045A895 /* NotificationData.swift */,
+				C46F490627FE23770045A895 /* Session.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -102,6 +104,7 @@
 		C45FAEF727F79861006EB3E8 /* NeumorphicPomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				C46F490327FE23060045A895 /* ViewModels */,
 				C4315CDD27FB8B97005FB849 /* Delegates */,
 				C4173E0127F9025300A3211E /* Models */,
 				C4173DFE27F9005A00A3211E /* Views */,
@@ -122,6 +125,14 @@
 				C45FAEFF27F79862006EB3E8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C46F490327FE23060045A895 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C46F490427FE23150045A895 /* ContentViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		C4C97D6127F85BCE000A5363 /* Style */ = {
@@ -217,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C97D6627F85D65000A5363 /* Counter.swift in Sources */,
+				C46F490727FE23770045A895 /* Session.swift in Sources */,
 				C45FAEFB27F79861006EB3E8 /* ContentView.swift in Sources */,
 				C4C97D6327F85BE9000A5363 /* NeumorphicButtonStyle.swift in Sources */,
 				C4C97D6E27F8634A000A5363 /* ButtonPad.swift in Sources */,
@@ -224,8 +236,8 @@
 				C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */,
 				C4173E0027F9008700A3211E /* CreateWorkView.swift in Sources */,
 				C4C97D6827F85EB1000A5363 /* Header.swift in Sources */,
+				C46F490527FE23150045A895 /* ContentViewModel.swift in Sources */,
 				C4C97D6A27F8626D000A5363 /* CardModifier.swift in Sources */,
-				C4173E0327F902E200A3211E /* Work.swift in Sources */,
 				C46F490227FDBE8A0045A895 /* NotificationData.swift in Sources */,
 				C45FAF0727F7CEE2006EB3E8 /* Arc.swift in Sources */,
 				C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */,

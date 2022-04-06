@@ -45,7 +45,7 @@ class NotificationDelegate: NSObject, ObservableObject, UNUserNotificationCenter
         completionHandler()
     }
     
-    func createNotification(notificationData: NotificationData, sound: UNNotificationSound?) {
+    func createNotification(notificationData: NotificationData, sound: UNNotificationSound? = nil) {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         let content = UNMutableNotificationContent()
