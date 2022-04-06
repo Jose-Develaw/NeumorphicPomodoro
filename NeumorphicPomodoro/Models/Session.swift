@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TimeType {
+enum IntervalType {
     case pomodoro, rest
 }
 
@@ -17,13 +17,19 @@ enum TaskType : String {
 }
 struct Session {
     
+    //Task specifics
     var taskType = TaskType.work
     var taskName = ""
+    
+    //Settings
+    var basicRestLength = 0.0
+    var basicPomodoroLength = 0.0
     var longRestCadence = 0
     var longRestLength = 0.0
     
-    var currentPomodoro = 0
+    //Interval Information
+    var currentRound = 0
     var timeRemaining = 0
-    var currentPomodoroLength = 0.0
-    var currentIntervalType = TimeType.pomodoro
+    var currentRoundInterval = 0.0
+    var currentIntervalType = IntervalType.pomodoro
 }

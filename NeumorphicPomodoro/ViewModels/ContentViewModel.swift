@@ -27,15 +27,15 @@ extension ContentView {
         }
         
         var tickingAmount : Double {
-            Double(currentSession.timeRemaining) / Double(currentSession.currentPomodoroLength) * 360
+            Double(currentSession.timeRemaining) / Double(currentSession.currentRoundInterval) * 360
         }
         
         func createSession() {
-            currentSession.currentPomodoro += 1
+            currentSession.currentRound += 1
             currentSession.longRestCadence = 2
             currentSession.longRestLength = 9
             currentSession.timeRemaining = 15
-            currentSession.currentPomodoroLength = 15
+            currentSession.currentRoundInterval = 15
         }
         
         func changeRound () {
@@ -44,10 +44,10 @@ extension ContentView {
                 
             } else {
                 currentSession.currentIntervalType = .pomodoro
-                currentSession.currentPomodoro += 1
+                currentSession.currentRound += 1
             }
             
-            currentSession.currentPomodoroLength = getInterval()
+            currentSession.currentRoundInterval = getInterval()
             currentSession.timeRemaining = Int(getInterval())
         }
         
@@ -74,7 +74,7 @@ extension ContentView {
         }
          
          func buildNotification() -> NotificationData {
-             let title = currentSession.currentIntervalType == .pomodoro ? "Pomodoro \(currentSession.currentPomodoro) completed" : "Rest \(currentSession.currentPomodoro) is over"
+             let title = currentSession.currentIntervalType == .pomodoro ? "Pomodoro \(currentSession.currentRound) completed" : "Rest \(currentSession.currentRound) is over"
              let message = currentSession.currentIntervalType == .pomodoro ? "It's time for you to rest" : "Let's do some work!"
              
              let interval = getInterval()
@@ -83,7 +83,7 @@ extension ContentView {
          }
          
          func getInterval() -> Double {
-             return currentSession.currentIntervalType == .pomodoro ? 15 : currentSession.currentPomodoro == currentSession.longRestCadence ? currentSession.longRestLength : 3
+             return currentSession.currentIntervalType == .pomodoro ? 15 : currentSession.currentRound == currentSession.longRestCadence ? currentSession.longRestLength : 3
          }
     }
 }

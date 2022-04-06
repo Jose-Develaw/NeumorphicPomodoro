@@ -51,6 +51,7 @@ struct ContentView: View {
                     }
                     
                 }
+                .frame(maxWidth: 350)
                 Group{
                     Spacer()
                     Header()
@@ -99,9 +100,10 @@ struct ContentView: View {
             viewModel.delegate.requestAuthorization()
         }
         .onReceive(viewModel.timer){ _ in
-            print("onReceiveTimer")
             if(pomodoroState == .Playing && viewModel.currentSession.timeRemaining > 0){
-                viewModel.currentSession.timeRemaining -= 1
+                withAnimation{
+                    viewModel.currentSession.timeRemaining -= 1
+                }
             } else {
                 pomodoroState = .Paused
                 viewModel.changeRound()
@@ -111,7 +113,6 @@ struct ContentView: View {
             if (pomodoroState == .Paused || pomodoroState == .Empty) {
                 viewModel.cancelTimer()
             } else {
-                print("Receive play")
                 viewModel.instantiateTimer()
             }
         }
