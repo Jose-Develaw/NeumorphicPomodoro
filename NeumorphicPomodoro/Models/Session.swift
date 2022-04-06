@@ -19,11 +19,11 @@ struct Session {
     
     var taskType = TaskType.work
     var taskName = ""
-    var totalPomodoros = 0
-    var longRest = 0.0
+    var longRestCadence = 0
+    var longRestLength = 0.0
     
     var currentPomodoro = 0
     var timeRemaining = 0
     var currentPomodoroLength = 0.0
-    var currentType = TimeType.pomodoro
+    var currentIntervalType = TimeType.pomodoro
 }

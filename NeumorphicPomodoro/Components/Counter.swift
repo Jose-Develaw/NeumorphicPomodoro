@@ -21,7 +21,7 @@ struct Counter : View {
                 Text(viewModel.remainingClock)
                     .font(.largeTitle.bold())
                     .foregroundColor(.black.opacity(0.8))
-                Text("\(viewModel.currentSession.currentType == .pomodoro ? "P" : "R")\(viewModel.currentSession.currentPomodoro)")
+                Text("\(viewModel.currentSession.currentIntervalType == .pomodoro ? "P" : "R")\(viewModel.currentSession.currentPomodoro)")
                     .font(.title)
                     .foregroundColor(.gray)
             }

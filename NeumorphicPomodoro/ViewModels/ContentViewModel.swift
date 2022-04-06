@@ -32,43 +32,58 @@ extension ContentView {
         
         func createSession() {
             currentSession.currentPomodoro += 1
-            currentSession.timeRemaining = 10
-            currentSession.currentPomodoroLength = 10
+            currentSession.longRestCadence = 2
+            currentSession.longRestLength = 9
+            currentSession.timeRemaining = 15
+            currentSession.currentPomodoroLength = 15
         }
         
         func changeRound () {
-            if(currentSession.currentType == .pomodoro){
-                currentSession.currentType = .rest
+            if(currentSession.currentIntervalType == .pomodoro){
+                currentSession.currentIntervalType = .rest
                 
             } else {
-                currentSession.currentType = .pomodoro
+                currentSession.currentIntervalType = .pomodoro
                 currentSession.currentPomodoro += 1
             }
-            currentSession.timeRemaining = 10
-            currentSession.currentPomodoroLength = 10
+            
+            currentSession.currentPomodoroLength = getInterval()
+            currentSession.timeRemaining = Int(getInterval())
         }
         
         func changeTaskType() {
             currentSession.taskType = currentSession.taskType == .work ? .personal : .work
         }
          
-         func instantiateTimer() {
-             print("instantiateTimer")
+        func instantiateTimer() {
+             
              if(currentSession.timeRemaining > 0){
-                 let notificationData = NotificationData(title: "Well done!", subtitle: "Time to rest", timeInterval: Double(currentSession.timeRemaining))
-                 delegate.createNotification(notificationData: notificationData)
+                 delegate.createNotification(notificationData: buildNotification())
              }
              self.timer = Timer.publish(every: 1, on: .main, in: .common)
              self.connectedTimer = self.timer.connect()
              isTimerWorking = true
              return
-         }
+        }
              
-         func cancelTimer() {
-             delegate.cancelNotification()
-             self.connectedTimer?.cancel()
-             isTimerWorking = false
-             return
+        func cancelTimer() {
+            delegate.cancelNotification()
+            self.connectedTimer?.cancel()
+            isTimerWorking = false
+            return
+        }
+         
+         func buildNotification() -> NotificationData {
+             let title = currentSession.currentIntervalType == .pomodoro ? "Pomodoro \(currentSession.currentPomodoro) completed" : "Rest \(currentSession.currentPomodoro) is over"
+             let message = currentSession.currentIntervalType == .pomodoro ? "It's time for you to rest" : "Let's do some work!"
+             
+             let interval = getInterval()
+             
+             return NotificationData(title: title, subtitle: message, timeInterval: interval)
+         }
+         
+         func getInterval() -> Double {
+             return currentSession.currentIntervalType == .pomodoro ? 15 : currentSession.currentPomodoro == currentSession.longRestCadence ? currentSession.longRestLength : 3
          }
     }
 }
