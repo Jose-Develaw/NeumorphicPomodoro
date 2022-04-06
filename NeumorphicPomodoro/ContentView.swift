@@ -21,6 +21,7 @@ struct ContentView: View {
     @State var pomodoroState = PomodoroState.Empty
     
     @State var isCreationPresented : Bool = false
+    
     @StateObject var work = Work()
     
     @State var showAlert = false
@@ -121,13 +122,14 @@ struct ContentView: View {
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
-                let interval = Date.now.timeIntervalSinceReferenceDate - savedDate.timeIntervalSinceReferenceDate
                 if(pomodoroState == .Playing)
                 {
+                    let interval = Date.now.timeIntervalSinceReferenceDate - savedDate.timeIntervalSinceReferenceDate
                     work.timeRemaining -= Int(interval)
-                    instantiateTimer()
+                    if (work.timeRemaining > 0){
+                        instantiateTimer()
+                    }
                 }
-                print(interval)
             } else if newPhase == .background {
                 savedDate = Date.now
             }
@@ -155,7 +157,10 @@ struct ContentView: View {
     }
     
     func instantiateTimer() {
-        delegate.createNotification(work)
+        if(work.timeRemaining > 0){
+            let notificationData = NotificationData(title: "Well done!", subtitle: "Time to rest", timeInterval: Double(work.timeRemaining))
+            delegate.createNotification(notificationData: notificationData)
+        }
         self.timer = Timer.publish(every: 1, on: .main, in: .common)
         self.connectedTimer = self.timer.connect()
         return

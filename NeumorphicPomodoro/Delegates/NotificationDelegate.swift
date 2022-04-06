@@ -45,32 +45,20 @@ class NotificationDelegate: NSObject, ObservableObject, UNUserNotificationCenter
         completionHandler()
     }
     
-    func createNotification(_ work : Work) {
+    func createNotification(notificationData: NotificationData, sound: UNNotificationSound?) {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
         let content = UNMutableNotificationContent()
-        content.title = "Well done"
-        content.subtitle = "It is time to rest"
-        content.sound = UNNotificationSound.default
+        content.title = notificationData.title
+        content.subtitle = notificationData.subtitle
+        content.sound = sound ?? UNNotificationSound.default
 
-        // show this notification when this pomodoro or rest time is over
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Double(work.timeRemaining), repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: notificationData.timeInterval, repeats: false)
 
         // choose a random identifier
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        // add our notification request
-        
-        
-        //notification actions
-        let next = UNNotificationAction(identifier: "Next", title: "Next", options: [])
-        let okay = UNNotificationAction(identifier: "Okay", title: "Okay", options: [])
-        let category = UNNotificationCategory(identifier: "Actions", actions: [next, okay], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: [.customDismissAction])
-        
-        UNUserNotificationCenter.current().setNotificationCategories([category])
         
         UNUserNotificationCenter.current().add(request)
-        
-        
     }
     
     func cancelNotification() {

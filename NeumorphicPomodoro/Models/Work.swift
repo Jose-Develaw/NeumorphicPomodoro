@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Work : ObservableObject, Identifiable{
+class Work : ObservableObject {
     
     enum TimeType {
         case pomodoro, rest
@@ -18,7 +18,6 @@ class Work : ObservableObject, Identifiable{
         personal = "Personal"
     }
     
-    @Published var id = UUID()
     @Published var isWork = true
     @Published var task = ""
     @Published var currentPomodoro = 0
