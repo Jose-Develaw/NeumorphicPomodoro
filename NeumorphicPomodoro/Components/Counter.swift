@@ -49,7 +49,7 @@ struct Counter : View {
                                 .fill(LinearGradient(.clear, .black))
                         }
                 )
-                .frame(maxWidth: 300, maxHeight: 300)
+                .frame(maxWidth: 285, maxHeight: 285)
             Circle()
                 .stroke(lineWidth: 8)
                 .fill(Color.offWhite)
@@ -73,11 +73,11 @@ struct Counter : View {
                                 .fill(LinearGradient(.black, .clear))
                         }
                 )
-                .frame(maxWidth: 270, maxHeight: 270)
+                .frame(maxWidth: 255, maxHeight: 255)
             if(pomodoroState != .Empty){
                 Arc(startAngle: .degrees(0), tickingAmount: viewModel.tickingAmount, clockwise: true)
                     .strokeBorder(LinearGradient(.purple, .pink), style: StrokeStyle(lineWidth: 12.5, lineCap: .round, lineJoin: .round))
-                    .frame(maxWidth: 285, maxHeight: 285)
+                    .frame(minWidth: 30, maxWidth: 270, minHeight: 30, maxHeight: 270)
             }
         }
     }

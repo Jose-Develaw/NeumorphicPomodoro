@@ -83,7 +83,7 @@ extension ContentView {
          }
          
          func getInterval() -> Double {
-             return currentSession.currentIntervalType == .pomodoro ? 15 : currentSession.currentRound == currentSession.longRestCadence ? currentSession.longRestLength : 3
+             return currentSession.currentIntervalType == .pomodoro ? 15 : currentSession.currentRound % currentSession.longRestCadence == 0 ? currentSession.longRestLength : 3
          }
     }
 }

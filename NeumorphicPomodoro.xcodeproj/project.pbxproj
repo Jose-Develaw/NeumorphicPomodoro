@@ -114,7 +114,6 @@
 				C45FAEFA27F79861006EB3E8 /* ContentView.swift */,
 				C45FAEFC27F79862006EB3E8 /* Assets.xcassets */,
 				C45FAEFE27F79862006EB3E8 /* Preview Content */,
-				C45FAF0627F7CEE2006EB3E8 /* Arc.swift */,
 			);
 			path = NeumorphicPomodoro;
 			sourceTree = "<group>";
@@ -149,6 +148,7 @@
 		C4C97D6427F85D44000A5363 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C45FAF0627F7CEE2006EB3E8 /* Arc.swift */,
 				C4C97D6527F85D65000A5363 /* Counter.swift */,
 				C4C97D6727F85EB1000A5363 /* Header.swift */,
 				C4C97D6D27F8634A000A5363 /* ButtonPad.swift */,
@@ -379,6 +379,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -408,6 +409,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
