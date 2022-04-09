@@ -24,14 +24,19 @@ struct SettingsView: View {
     var body: some View {
         ZStack{
             Color.offWhite
-            Form {
-                Section {
-                    Stepper("Pomodoro length: \(settings.settings.basicPomodoroLength)", value: $settings.settings.basicPomodoroLength, in: 20...60)
-                    Stepper("Basic rest length: \(settings.settings.basicRestLength)", value: $settings.settings.basicRestLength, in: 5...20)
-                    Stepper("Long rest cadence: \(settings.settings.longRestCadence)", value: $settings.settings.longRestCadence, in: 2...10)
-                    Stepper("Long rest length: \(settings.settings.longRestLength)", value: $settings.settings.longRestLength, in: 15...35)
-                }
+            VStack (spacing: 10){
+                CustomStepper(value: $settings.settings.basicPomodoroLength, textColor: .black, text: "Pomodoro length")
+                
+                CustomStepper(value: $settings.settings.basicRestLength, textColor: .black, text: "Basic rest length")
+                    
+                CustomStepper(value: $settings.settings.longRestCadence, textColor: .black, text: "Long rest cadence")
+                  
+                CustomStepper(value: $settings.settings.longRestLength, textColor: .black, text: "Long rest length")
+                    
+                Spacer()
             }
+            .padding()
+            
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
