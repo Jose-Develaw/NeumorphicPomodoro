@@ -29,8 +29,18 @@ class SettingsWrapper : ObservableObject, Codable {
 }
 
 struct Settings : Codable {
-    var basicRestLength = 0.0
-    var basicPomodoroLength = 0.0
-    var longRestCadence = 0
-    var longRestLength = 0.0
+    var basicRestLength = 5
+    var basicPomodoroLength = 25
+    var longRestCadence = 4
+    var longRestLength = 15
+    
+    var basicRestLengthSeconds : Double {
+        Double(basicRestLength) * 60
+    }
+    var basicPomodoroLengthSeconds : Double {
+        Double(basicPomodoroLength) * 60
+    }
+    var longRestLengthSeconds : Double {
+        Double(longRestLength) * 60
+    }
 }

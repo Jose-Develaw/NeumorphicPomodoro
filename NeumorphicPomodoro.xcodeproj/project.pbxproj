@@ -22,6 +22,7 @@
 		C46F49092801A0490045A895 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F49082801A0490045A895 /* SettingsView.swift */; };
 		C46F490B2801A2490045A895 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F490A2801A2490045A895 /* HistoryView.swift */; };
 		C46F490D2801A4110045A895 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F490C2801A4110045A895 /* Settings.swift */; };
+		C46F49102801A6C70045A895 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F490F2801A6C70045A895 /* SettingsManager.swift */; };
 		C4C97D6327F85BE9000A5363 /* NeumorphicButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6227F85BE9000A5363 /* NeumorphicButtonStyle.swift */; };
 		C4C97D6627F85D65000A5363 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6527F85D65000A5363 /* Counter.swift */; };
 		C4C97D6827F85EB1000A5363 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6727F85EB1000A5363 /* Header.swift */; };
@@ -47,6 +48,7 @@
 		C46F49082801A0490045A895 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C46F490A2801A2490045A895 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		C46F490C2801A4110045A895 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		C46F490F2801A6C70045A895 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		C4C97D6227F85BE9000A5363 /* NeumorphicButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicButtonStyle.swift; sourceTree = "<group>"; };
 		C4C97D6527F85D65000A5363 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		C4C97D6727F85EB1000A5363 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		C45FAEF727F79861006EB3E8 /* NeumorphicPomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				C46F490E2801A6B50045A895 /* Services */,
 				C46F490327FE23060045A895 /* ViewModels */,
 				C4315CDD27FB8B97005FB849 /* Delegates */,
 				C4173E0127F9025300A3211E /* Models */,
@@ -141,6 +144,14 @@
 				C46F490427FE23150045A895 /* ContentViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C46F490E2801A6B50045A895 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C46F490F2801A6C70045A895 /* SettingsManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C4C97D6127F85BCE000A5363 /* Style */ = {
@@ -252,6 +263,7 @@
 				C46F490227FDBE8A0045A895 /* NotificationData.swift in Sources */,
 				C45FAF0727F7CEE2006EB3E8 /* Arc.swift in Sources */,
 				C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */,
+				C46F49102801A6C70045A895 /* SettingsManager.swift in Sources */,
 				C4C97D6C27F862B6000A5363 /* ColorExtensions.swift in Sources */,
 				C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */,
 				C46F490D2801A4110045A895 /* Settings.swift in Sources */,

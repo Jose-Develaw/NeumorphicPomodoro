@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateWorkView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var settings: SettingsWrapper
     @Binding var pomodoroState : PomodoroState
     @ObservedObject var viewModel: ContentView.ViewModel
     var disabled : Bool {
@@ -43,7 +44,7 @@ struct CreateWorkView: View {
                     CustomToggle(width: 350, height: 60, toggleWidthOffset: 50, cornerRadius: 10, padding: 10, toggleAction: toggleType)
                     
                     Button{
-                        viewModel.createSession()
+                        viewModel.createSession(settings)
                         pomodoroState = .Paused
                         dismiss()
                     }label: {

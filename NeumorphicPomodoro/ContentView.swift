@@ -35,6 +35,7 @@ class ChangingWidth : ObservableObject {
 
 struct ContentView: View {
     
+    @EnvironmentObject var settings: SettingsWrapper
     @StateObject var viewModel = ViewModel()
     
     @Environment(\.scenePhase) var scenePhase
@@ -128,7 +129,7 @@ struct ContentView: View {
                     }
                     Spacer()
                     Spacer()
-                    ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, changeRound: viewModel.changeRound)
+                    ButtonPad(pomodoroState: $pomodoroState, showCreation: {isCreationPresented = true}, showCancelAlert: showCancelAlert, changeRound: callChangeRound)
                     Spacer()
                 }
                 .padding()
@@ -153,14 +154,14 @@ struct ContentView: View {
                     }
                 } else {
                     pomodoroState = .Paused
-                    viewModel.changeRound()
+                    viewModel.changeRound(settings)
                 }
             }
             .onChange(of: pomodoroState) { _ in
                 if (pomodoroState == .Paused || pomodoroState == .Empty) {
                     viewModel.cancelTimer()
                 } else {
-                    viewModel.instantiateTimer()
+                    viewModel.instantiateTimer(settings)
                 }
             }
             .onChange(of: scenePhase) { newPhase in
@@ -169,7 +170,7 @@ struct ContentView: View {
                     {
                         let interval = Date.now.timeIntervalSinceReferenceDate - savedDate.timeIntervalSinceReferenceDate
                         if(Double(interval) > viewModel.currentSession.currentRoundInterval) {
-                            viewModel.instantiateTimer()
+                            viewModel.instantiateTimer(settings)
                         } else {
                             viewModel.currentSession.timeRemaining -= Int(interval)
                         }
@@ -206,7 +207,11 @@ struct ContentView: View {
         }
         .preferredColorScheme(.light)
     }
-        
+    
+    func callChangeRound() {
+        viewModel.changeRound(settings)
+    }
+    
     func showCancelAlert() {
         alertMessage = "Do you want to finish the current task?"
         alertTitle = "Stop task"

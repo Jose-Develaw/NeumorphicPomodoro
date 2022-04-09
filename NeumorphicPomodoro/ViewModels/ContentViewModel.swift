@@ -30,15 +30,15 @@ extension ContentView {
             Double(currentSession.timeRemaining) / Double(currentSession.currentRoundInterval) * 360
         }
         
-        func createSession() {
+         func createSession(_ settings: SettingsWrapper) {
             currentSession.currentRound += 1
-            currentSession.longRestCadence = 2
-            currentSession.longRestLength = 9
-            currentSession.timeRemaining = 15
-            currentSession.currentRoundInterval = 15
+            currentSession.longRestCadence = settings.settings.longRestCadence
+            currentSession.longRestLength = settings.settings.longRestLengthSeconds
+            currentSession.timeRemaining = Int(settings.settings.basicPomodoroLengthSeconds)
+            currentSession.currentRoundInterval = settings.settings.basicPomodoroLengthSeconds
         }
         
-        func changeRound () {
+         func changeRound (_ settings: SettingsWrapper) {
             if(currentSession.currentIntervalType == .pomodoro){
                 currentSession.currentIntervalType = .rest
                 
@@ -47,18 +47,18 @@ extension ContentView {
                 currentSession.currentRound += 1
             }
             
-            currentSession.currentRoundInterval = getInterval()
-            currentSession.timeRemaining = Int(getInterval())
+             currentSession.currentRoundInterval = getInterval(settings)
+            currentSession.timeRemaining = Int(getInterval(settings))
         }
         
         func changeTaskType() {
             currentSession.taskType = currentSession.taskType == .work ? .personal : .work
         }
          
-        func instantiateTimer() {
+         func instantiateTimer(_ settings: SettingsWrapper) {
              
              if(currentSession.timeRemaining > 0){
-                 delegate.createNotification(notificationData: buildNotification())
+                 delegate.createNotification(notificationData: buildNotification(settings))
              }
              self.timer = Timer.publish(every: 1, on: .main, in: .common)
              self.connectedTimer = self.timer.connect()
@@ -73,17 +73,17 @@ extension ContentView {
             return
         }
          
-         func buildNotification() -> NotificationData {
+         func buildNotification(_ settings: SettingsWrapper) -> NotificationData {
              let title = currentSession.currentIntervalType == .pomodoro ? "Pomodoro \(currentSession.currentRound) completed" : "Rest \(currentSession.currentRound) is over"
              let message = currentSession.currentIntervalType == .pomodoro ? "It's time for you to rest" : "Let's do some work!"
              
-             let interval = getInterval()
+             let interval = getInterval(settings)
              
              return NotificationData(title: title, subtitle: message, timeInterval: interval)
          }
          
-         func getInterval() -> Double {
-             return currentSession.currentIntervalType == .pomodoro ? 15 : currentSession.currentRound % currentSession.longRestCadence == 0 ? currentSession.longRestLength : 3
+         func getInterval(_ settings: SettingsWrapper) -> Double {
+             return currentSession.currentIntervalType == .pomodoro ? settings.settings.basicPomodoroLengthSeconds : currentSession.currentRound % currentSession.longRestCadence == 0 ? currentSession.longRestLength : settings.settings.basicRestLengthSeconds
          }
     }
 }
