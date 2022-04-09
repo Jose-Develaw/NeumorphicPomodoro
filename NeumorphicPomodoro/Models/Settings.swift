@@ -13,7 +13,7 @@ class SettingsWrapper : ObservableObject, Codable {
         case settings
     }
     
-    @Published var settings : Settings
+    @Published var settings = Settings()
     
     init(){}
     
