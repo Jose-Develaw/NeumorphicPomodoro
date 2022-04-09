@@ -34,6 +34,7 @@ struct CreateWorkView: View {
                         TextField("Short description", text: $viewModel.currentSession.taskName)
                             .font(.title2)
                             .foregroundColor(.black.opacity(0.8))
+                            .accentColor(.pink)
                       }
                     .padding()
                     .background(ShallowConcaveView(cornerRadius: 10))

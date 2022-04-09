@@ -12,6 +12,27 @@ enum PomodoroState {
     case Empty, Playing, Paused
 }
 
+struct ViewSizeKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        value = nextValue()
+    }
+}
+
+struct ViewGeometry: View {
+    var body: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .preference(key: ViewSizeKey.self, value: geometry.size)
+        }
+    }
+}
+
+class ChangingWidth : ObservableObject {
+    @Published var width : CGFloat = .zero
+}
+
 struct ContentView: View {
     
     @StateObject var viewModel = ViewModel()
@@ -22,9 +43,10 @@ struct ContentView: View {
     @State var isCreationPresented : Bool = false
     
     @State var scrollText: Bool = false
-    let textWidth: CGFloat = 460
+    @ObservedObject var textWidth = ChangingWidth()
+    @State var otherProp: CGFloat = .zero
+    @State var offsetX: CGFloat = .zero
     let titleWidth: CGFloat = 350
-    let titleHeight: CGFloat = 70.0
     
     @State var showAlert = false
     @State var alertTitle = ""
@@ -43,26 +65,58 @@ struct ContentView: View {
                     Spacer()
                     VStack(alignment: .center, spacing: 5){
                         if(pomodoroState == .Empty){
-                            HStack{
-                                ScrollView(.horizontal)
-                                {
-                                    Text("Gotta do some work?")
-                                        .font(.title2.bold())
-                                        .foregroundColor(.black.opacity(0.8))
-                                        .frame(minWidth: titleWidth, minHeight: titleHeight, alignment: .center)
-                                        .offset(x: (titleWidth < textWidth) ? (scrollText ? (textWidth * -1) - (titleWidth / 2) : titleWidth ) : 0, y: 0)
-                                        .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false), value: scrollText)
-                                        .onAppear {
-                                            self.scrollText.toggle()
-                                        }
-                                }
-                            }
-                            .frame(maxWidth: titleWidth, alignment: .center)
-                            
+                            Text("Gotta do some work?")
+                                .font(.title2.bold())
+                                .foregroundColor(.black.opacity(0.8))
                             Text("Press plus button when you are ready")
                                 .font(.title3)
                                 .foregroundColor(.gray)
                         } else {
+//                            HStack{
+//                                ScrollView(.horizontal)
+//                                {
+//
+//                                    Text(viewModel.currentSession.taskName)
+//                                        .font(.title2.bold())
+//                                        .foregroundColor(.black.opacity(0.8))
+//                                        .background(ViewGeometry())
+//                                        .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false), value: scrollText)
+//                                        .onAppear {
+//                                            print("On appear")
+//                                        }
+//                                        .offset(x: offsetX, y: 0)
+//                                        .onPreferenceChange(ViewSizeKey.self) {
+//
+//                                            if (titleWidth < $0.width) {
+//                                                print("Es menor title, text: ", titleWidth, $0.width)
+//                                                self.scrollText = true
+//                                            }
+//
+//                                            offsetX = titleWidth < $0.width ? scrollText ? ($0.width * -1) - (titleWidth / 2) : titleWidth : 0
+//
+//                                            print("Offset x: ", offsetX)
+//
+//                                        }
+//
+//
+//                                }
+//                            }
+//                            .frame(maxWidth: titleWidth, alignment: .center)
+//
+//                            HStack
+//                               {
+//                                   ScrollView(.horizontal)
+//                                   {
+//                                       Text("13. This is my very long text title for a tv show")
+//                                           .frame(minWidth: titleWidth, alignment: .center)
+//                                           .offset(x: (titleWidth < 500) ? (scrollText ? (500 * -1) - (titleWidth / 2) : titleWidth ) : 0, y: 0)
+//                                           .animation(Animation.linear(duration: 10).repeatForever(autoreverses: false), value: scrollText)
+//                                           .onAppear {
+//
+//                                           }
+//                                   }
+//                               }
+//                               .frame(maxWidth: titleWidth, alignment: .center)
                             Text(viewModel.currentSession.taskName)
                                 .font(.title2.bold())
                                 .foregroundColor(.black.opacity(0.8))
@@ -129,7 +183,7 @@ struct ContentView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     NavigationLink{
-                        Text("History")
+                        HistoryView()
                     } label: {
                         Image(systemName: "clock.arrow.circlepath")
                             .font(.title2)
@@ -139,7 +193,7 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     NavigationLink{
-                        Text("Settings")
+                        SettingsView()
                     } label: {
                         Image(systemName: "gear")
                             .font(.title2)
@@ -150,6 +204,7 @@ struct ContentView: View {
             }
             .background(Color.offWhite)
         }
+        .preferredColorScheme(.light)
     }
         
     func showCancelAlert() {
