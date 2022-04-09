@@ -13,7 +13,11 @@ class SettingsWrapper : ObservableObject, Codable {
         case settings
     }
     
-    @Published var settings = Settings()
+    @Published var settings = Settings() {
+        didSet {
+            SettingsManager.saveSettings(self)
+        }
+    }
     
     init(){}
     

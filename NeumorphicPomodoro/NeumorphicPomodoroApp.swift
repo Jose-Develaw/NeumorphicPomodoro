@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct NeumorphicPomodoroApp: App {
-    @StateObject var settings = SettingsManager.getSettings()
+    @StateObject var settings = SettingsManager.getSettings() 
     var body: some Scene {
         WindowGroup {
             ContentView()
