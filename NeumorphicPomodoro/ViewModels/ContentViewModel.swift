@@ -41,14 +41,13 @@ extension ContentView {
          func changeRound (_ settings: SettingsWrapper) {
             if(currentSession.currentIntervalType == .pomodoro){
                 currentSession.currentIntervalType = .rest
-                
             } else {
                 currentSession.currentIntervalType = .pomodoro
                 currentSession.currentRound += 1
             }
             
-             currentSession.currentRoundInterval = getInterval(settings)
-            currentSession.timeRemaining = Int(getInterval(settings))
+            currentSession.currentRoundInterval = getRoundFullTime(settings)
+            currentSession.timeRemaining = Int(getRoundFullTime(settings))
         }
         
         func changeTaskType() {
@@ -58,7 +57,7 @@ extension ContentView {
          func instantiateTimer(_ settings: SettingsWrapper) {
              
              if(currentSession.timeRemaining > 0){
-                 delegate.createNotification(notificationData: buildNotification(settings))
+                 delegate.createNotification(notificationData: buildNotification())
              }
              self.timer = Timer.publish(every: 1, on: .main, in: .common)
              self.connectedTimer = self.timer.connect()
@@ -73,16 +72,16 @@ extension ContentView {
             return
         }
          
-         func buildNotification(_ settings: SettingsWrapper) -> NotificationData {
+         func buildNotification() -> NotificationData {
              let title = currentSession.currentIntervalType == .pomodoro ? "Pomodoro \(currentSession.currentRound) completed" : "Rest \(currentSession.currentRound) is over"
              let message = currentSession.currentIntervalType == .pomodoro ? "It's time for you to rest" : "Let's do some work!"
              
-             let interval = getInterval(settings)
+             let interval = Double(currentSession.timeRemaining)
              
              return NotificationData(title: title, subtitle: message, timeInterval: interval)
          }
          
-         func getInterval(_ settings: SettingsWrapper) -> Double {
+         func getRoundFullTime(_ settings: SettingsWrapper) -> Double {
              return currentSession.currentIntervalType == .pomodoro ? settings.settings.basicPomodoroLengthSeconds : currentSession.currentRound % currentSession.longRestCadence == 0 ? currentSession.longRestLength : settings.settings.basicRestLengthSeconds
          }
     }

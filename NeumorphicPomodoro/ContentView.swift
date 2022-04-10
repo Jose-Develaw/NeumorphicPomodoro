@@ -177,6 +177,7 @@ struct ContentView: View {
                             viewModel.currentSession.timeRemaining = 0
                         } else {
                             viewModel.currentSession.timeRemaining -= Int(interval)
+                            viewModel.instantiateTimer(settings)
                         }
                        
                     }
