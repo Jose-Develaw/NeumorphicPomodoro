@@ -40,6 +40,7 @@ struct ContentView: View {
     
     @Environment(\.scenePhase) var scenePhase
     @State var savedDate : Date = Date.now
+    @State var savedRemaining : Int = 0
     @State var pomodoroState = PomodoroState.Empty
     @State var isCreationPresented : Bool = false
     
@@ -166,18 +167,25 @@ struct ContentView: View {
             }
             .onChange(of: scenePhase) { newPhase in
                 if newPhase == .active {
+                    print("active")
                     if(pomodoroState == .Playing)
                     {
                         let interval = Date.now.timeIntervalSinceReferenceDate - savedDate.timeIntervalSinceReferenceDate
-                        if(Double(interval) > viewModel.currentSession.currentRoundInterval) {
-                            viewModel.instantiateTimer(settings)
+                        
+                        print("Interval", interval)
+                        if(Int(interval) > savedRemaining) {
+                            viewModel.currentSession.timeRemaining = 0
                         } else {
                             viewModel.currentSession.timeRemaining -= Int(interval)
                         }
                        
                     }
                 } else if newPhase == .background {
+                    print("Background")
                     savedDate = Date.now
+                    savedRemaining = viewModel.currentSession.timeRemaining
+                } else if newPhase == .inactive {
+                    print("Inactive")
                 }
             }
             .navigationBarTitleDisplayMode(.inline)

@@ -29,13 +29,13 @@ struct SettingsView: View {
         ZStack{
             Color.offWhite
             VStack (spacing: 10){
-                CustomStepper(value: $settings.settings.basicPomodoroLength, textColor: .black, text: "Pomodoro length", from: 20, to: 40)
+                CustomStepper(value: $settings.settings.basicPomodoroLength, textColor: .black, text: "Pomodoro length", from: 1, to: 40)
                 
-                CustomStepper(value: $settings.settings.basicRestLength, textColor: .black, text: "Basic rest length", from: 5, to: 10)
+                CustomStepper(value: $settings.settings.basicRestLength, textColor: .black, text: "Basic rest length", from: 1, to: 10)
                     
-                CustomStepper(value: $settings.settings.longRestCadence, textColor: .black, text: "Long rest cadence", from: 2, to: 8)
+                CustomStepper(value: $settings.settings.longRestCadence, textColor: .black, text: "Long rest cadence", from: 1, to: 8)
                   
-                CustomStepper(value: $settings.settings.longRestLength, textColor: .black, text: "Long rest length", from: 15, to: 30)
+                CustomStepper(value: $settings.settings.longRestLength, textColor: .black, text: "Long rest length", from: 1, to: 30)
                     
                 Spacer()
             }
