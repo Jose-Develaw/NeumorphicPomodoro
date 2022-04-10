@@ -38,9 +38,12 @@ struct ContentView: View {
     @EnvironmentObject var settings: SettingsWrapper
     @StateObject var viewModel = ViewModel()
     
+    // Needed for saving time and notification states when apps goes background
     @Environment(\.scenePhase) var scenePhase
     @State var savedDate : Date = Date.now
     @State var savedRemaining : Int = 0
+    
+    
     @State var pomodoroState = PomodoroState.Empty
     @State var isCreationPresented : Bool = false
     
