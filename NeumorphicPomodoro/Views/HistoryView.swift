@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct HistoryView: View {
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @GestureState private var dragOffset = CGSize.zero
+    
     var btnBack : some View { Button(action: {
             self.presentationMode.wrappedValue.dismiss()
             }) {
@@ -31,7 +34,15 @@ struct HistoryView: View {
         .navigationBarItems(leading: btnBack)
         .toolbar{
             
-        }.background(Color.offWhite)
+        }
+        .background(Color.offWhite)
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+                
+                    if(value.startLocation.x < 30 && value.translation.width > 100) {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    
+                }))
     }
 }
 

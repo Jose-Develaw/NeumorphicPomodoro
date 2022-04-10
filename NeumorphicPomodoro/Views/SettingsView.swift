@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var settings: SettingsWrapper 
+    @GestureState private var dragOffset = CGSize.zero
+    
+    @EnvironmentObject var settings: SettingsWrapper
+    
     var btnBack : some View { Button(action: {
             self.presentationMode.wrappedValue.dismiss()
             }) {
@@ -44,7 +48,15 @@ struct SettingsView: View {
         .navigationBarItems(leading: btnBack)
         .toolbar{
             
-        }.background(Color.offWhite)
+        }
+        .background(Color.offWhite)
+        .gesture(DragGesture().updating($dragOffset, body: { (value, state, transaction) in
+                
+                    if(value.startLocation.x < 30 && value.translation.width > 100) {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    
+                }))
     }
 }
 
