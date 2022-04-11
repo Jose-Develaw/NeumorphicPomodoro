@@ -11,7 +11,7 @@ import SwiftUI
 extension ContentView {
     
      class ViewModel: ObservableObject {
-        
+         
         @Published var currentSession = Session()
         @Published var isTimerWorking = false
         var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
@@ -84,5 +84,7 @@ extension ContentView {
          func getRoundFullTime(_ settings: SettingsWrapper) -> Double {
              return currentSession.currentIntervalType == .pomodoro ? settings.settings.basicPomodoroLengthSeconds : currentSession.currentRound % currentSession.longRestCadence == 0 ? currentSession.longRestLength : settings.settings.basicRestLengthSeconds
          }
+         
+         
     }
 }

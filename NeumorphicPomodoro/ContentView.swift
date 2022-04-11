@@ -35,6 +35,7 @@ class ChangingWidth : ObservableObject {
 
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var settings: SettingsWrapper
     @StateObject var viewModel = ViewModel()
     
@@ -229,11 +230,28 @@ struct ContentView: View {
         alertTitle = "Stop task"
         alertConfirmAction = {
             pomodoroState = .Empty
+            saveSession()
             withAnimation{
                 viewModel.currentSession = Session()
             }
         }
         showAlert = true
+    }
+    
+    func saveSession(){
+        print("Save")
+        let session = PomodoroSession(context: moc)
+        session.task = viewModel.currentSession.taskName
+        session.type = viewModel.currentSession.taskType.rawValue
+        session.numberOfPomodoros = Int16(viewModel.currentSession.currentRound)
+        session.numberOfRests = viewModel.currentSession.currentIntervalType == .rest ? Int16(viewModel.currentSession.currentRound) : Int16(viewModel.currentSession.currentRound - 1)
+        session.pomodoroLength = Int16(viewModel.currentSession.basicPomodoroLength)
+        session.restLenght = Int16(viewModel.currentSession.basicRestLength)
+        session.restCadence = Int16(viewModel.currentSession.longRestCadence)
+        session.longRestLength = Int16(viewModel.currentSession.longRestLength)
+        session.date = Date.now
+        
+        try? moc.save()
     }
 }
     
