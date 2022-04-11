@@ -30,6 +30,10 @@
 		C4C97D6A27F8626D000A5363 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6927F8626D000A5363 /* CardModifier.swift */; };
 		C4C97D6C27F862B6000A5363 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6B27F862B6000A5363 /* ColorExtensions.swift */; };
 		C4C97D6E27F8634A000A5363 /* ButtonPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C97D6D27F8634A000A5363 /* ButtonPad.swift */; };
+		C4F042EF2804B5400090B402 /* NeumorphicPomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4F042ED2804B5400090B402 /* NeumorphicPomodoro.xcdatamodeld */; };
+		C4F042F62804B7A40090B402 /* PomodoroSession+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F042F42804B7A40090B402 /* PomodoroSession+CoreDataClass.swift */; };
+		C4F042F72804B7A40090B402 /* PomodoroSession+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F042F52804B7A40090B402 /* PomodoroSession+CoreDataProperties.swift */; };
+		C4F042FA2804B81E0090B402 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F042F92804B81E0090B402 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +61,10 @@
 		C4C97D6927F8626D000A5363 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
 		C4C97D6B27F862B6000A5363 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		C4C97D6D27F8634A000A5363 /* ButtonPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPad.swift; sourceTree = "<group>"; };
+		C4F042EE2804B5400090B402 /* NeumorphicPomodoro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NeumorphicPomodoro.xcdatamodel; sourceTree = "<group>"; };
+		C4F042F42804B7A40090B402 /* PomodoroSession+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroSession+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C4F042F52804B7A40090B402 /* PomodoroSession+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PomodoroSession+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C4F042F92804B81E0090B402 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,7 @@
 		C45FAEF727F79861006EB3E8 /* NeumorphicPomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				C4F042F82804B7B90090B402 /* CoreData */,
 				C46F490E2801A6B50045A895 /* Services */,
 				C46F490327FE23060045A895 /* ViewModels */,
 				C4315CDD27FB8B97005FB849 /* Delegates */,
@@ -128,6 +137,7 @@
 				C45FAEFA27F79861006EB3E8 /* ContentView.swift */,
 				C45FAEFC27F79862006EB3E8 /* Assets.xcassets */,
 				C45FAEFE27F79862006EB3E8 /* Preview Content */,
+				C4F042ED2804B5400090B402 /* NeumorphicPomodoro.xcdatamodeld */,
 			);
 			path = NeumorphicPomodoro;
 			sourceTree = "<group>";
@@ -178,6 +188,16 @@
 				C46F49112801BE930045A895 /* CustomStepper.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C4F042F82804B7B90090B402 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C4F042F42804B7A40090B402 /* PomodoroSession+CoreDataClass.swift */,
+				C4F042F52804B7A40090B402 /* PomodoroSession+CoreDataProperties.swift */,
+				C4F042F92804B81E0090B402 /* DataController.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,16 +280,20 @@
 				C46F490B2801A2490045A895 /* HistoryView.swift in Sources */,
 				C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */,
 				C4173E0027F9008700A3211E /* CreateWorkView.swift in Sources */,
+				C4F042FA2804B81E0090B402 /* DataController.swift in Sources */,
 				C4C97D6827F85EB1000A5363 /* Header.swift in Sources */,
 				C46F490527FE23150045A895 /* ContentViewModel.swift in Sources */,
 				C4C97D6A27F8626D000A5363 /* CardModifier.swift in Sources */,
 				C46F490227FDBE8A0045A895 /* NotificationData.swift in Sources */,
+				C4F042F62804B7A40090B402 /* PomodoroSession+CoreDataClass.swift in Sources */,
 				C45FAF0727F7CEE2006EB3E8 /* Arc.swift in Sources */,
 				C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */,
+				C4F042F72804B7A40090B402 /* PomodoroSession+CoreDataProperties.swift in Sources */,
 				C46F49102801A6C70045A895 /* SettingsManager.swift in Sources */,
 				C46F49122801BE930045A895 /* CustomStepper.swift in Sources */,
 				C4C97D6C27F862B6000A5363 /* ColorExtensions.swift in Sources */,
 				C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */,
+				C4F042EF2804B5400090B402 /* NeumorphicPomodoro.xcdatamodeld in Sources */,
 				C46F490D2801A4110045A895 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +499,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C4F042ED2804B5400090B402 /* NeumorphicPomodoro.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C4F042EE2804B5400090B402 /* NeumorphicPomodoro.xcdatamodel */,
+			);
+			currentVersion = C4F042EE2804B5400090B402 /* NeumorphicPomodoro.xcdatamodel */;
+			path = NeumorphicPomodoro.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C45FAEED27F79861006EB3E8 /* Project object */;
 }
