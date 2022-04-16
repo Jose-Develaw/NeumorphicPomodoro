@@ -48,7 +48,7 @@ struct HistoryView: View {
                             .padding(5)
                             
                         }
-                        .listRowSeparatorTint(.gray, edges: .all)
+                        .listRowSeparatorTint(.gray)
                         .listRowBackground(Color.offWhite)
                         
                         
@@ -57,8 +57,38 @@ struct HistoryView: View {
                 } header: {
                     Text("11/04/2022")
                 }
+                Section {
+                    ForEach(pomodoroSessions) { session in
+                        NavigationLink{
+                            Text(session.unwrappedTask)
+                        } label: {
+                            
+                            VStack (alignment: .leading){
+                                Text(session.unwrappedTask)
+                                    .font(.title3)
+                                Text(session.unwrappedType)
+                                    .foregroundColor(.gray)
+                            }
+                            .padding(5)
+                            
+                        }
+                        
+                        .listRowSeparatorTint(.gray, edges: .all)
+                        .listRowBackground(Color.offWhite)
+                        
+                        
+                    }
+                    .onDelete(perform: deleteSessions)
+                } header: {
+                    Text("10/04/2022")
+                }
+                
             }
-            .listStyle(PlainListStyle())
+            .accentColor(.pink)
+            .listStyle(.sidebar)
+            .padding(.vertical, 4)
+            .background(ShallowConcaveView(cornerRadius: 10))
+            .padding()
         }
         .background(Color.offWhite)
         .navigationTitle("History")
