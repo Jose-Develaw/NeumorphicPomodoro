@@ -20,15 +20,15 @@ struct HistoryView: View {
     @GestureState private var dragOffset = CGSize.zero
     
     var btnBack : some View { Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-            }) {
-               
-                Image(systemName: "arrowshape.turn.up.backward")
-                    .font(.title2)// set image here
-                    .foregroundStyle(LinearGradient(.purple, .pink))
-                
-            }
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+           
+            Image(systemName: "arrowshape.turn.up.backward")
+                .font(.title2)
+                .foregroundStyle(LinearGradient(.purple, .pink))
+            
         }
+    }
     
     var body: some View {
         VStack{
@@ -36,7 +36,7 @@ struct HistoryView: View {
                 Section {
                     ForEach(pomodoroSessions) { session in
                         NavigationLink{
-                            Text(session.unwrappedTask)
+                            DetailView(pomodoroSession: session)
                         } label: {
                             
                             VStack (alignment: .leading){
@@ -45,22 +45,33 @@ struct HistoryView: View {
                                 Text(session.unwrappedType)
                                     .foregroundColor(.gray)
                             }
-                            .padding(5)
+                            .padding(10)
                             
                         }
-                        .listRowSeparatorTint(.gray)
+                        .listRowSeparator(.visible)
+                        .listRowSeparatorTint(.gray, edges: .all)
+                        .listRowInsets(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 10))
                         .listRowBackground(Color.offWhite)
-                        
-                        
                     }
                     .onDelete(perform: deleteSessions)
                 } header: {
-                    Text("11/04/2022")
+                    HStack{
+                        Text("11/04/2022")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(ShallowConcaveView(cornerRadius: 10))
+                    }
+                    .padding(.trailing)
+                    
                 }
+                
+                /// Repeat section
+                ///
+                
                 Section {
                     ForEach(pomodoroSessions) { session in
                         NavigationLink{
-                            Text(session.unwrappedTask)
+                            DetailView(pomodoroSession: session)
                         } label: {
                             
                             VStack (alignment: .leading){
@@ -69,26 +80,30 @@ struct HistoryView: View {
                                 Text(session.unwrappedType)
                                     .foregroundColor(.gray)
                             }
-                            .padding(5)
+                            .padding(10)
                             
                         }
-                        
+                        .listRowSeparator(.visible)
                         .listRowSeparatorTint(.gray, edges: .all)
+                        .listRowInsets(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 10))
                         .listRowBackground(Color.offWhite)
-                        
-                        
                     }
                     .onDelete(perform: deleteSessions)
                 } header: {
-                    Text("10/04/2022")
+                    HStack{
+                        Text("11/04/2022")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(ShallowConcaveView(cornerRadius: 10))
+                    }
+                    .padding(.trailing)
+                    
                 }
                 
             }
             .accentColor(.pink)
             .listStyle(.sidebar)
             .padding(.vertical, 4)
-            .background(ShallowConcaveView(cornerRadius: 10))
-            .padding()
         }
         .background(Color.offWhite)
         .navigationTitle("History")

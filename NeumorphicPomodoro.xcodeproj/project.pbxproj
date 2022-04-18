@@ -11,6 +11,7 @@
 		C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */; };
 		C4315CDC27F9DEFA005FB849 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */; };
 		C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */; };
+		C433F23F280DA6100054F3CC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433F23E280DA6100054F3CC /* DetailView.swift */; };
 		C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */; };
 		C45FAEFB27F79861006EB3E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEFA27F79861006EB3E8 /* ContentView.swift */; };
 		C45FAEFD27F79862006EB3E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C45FAEFC27F79862006EB3E8 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		C4315CD927F9DEA2005FB849 /* ShallowConcaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShallowConcaveView.swift; sourceTree = "<group>"; };
 		C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
 		C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		C433F23E280DA6100054F3CC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C45FAEF527F79861006EB3E8 /* NeumorphicPomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeumorphicPomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicPomodoroApp.swift; sourceTree = "<group>"; };
 		C45FAEFA27F79861006EB3E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				C4173DFF27F9008700A3211E /* CreateWorkView.swift */,
 				C46F49082801A0490045A895 /* SettingsView.swift */,
 				C46F490A2801A2490045A895 /* HistoryView.swift */,
+				C433F23E280DA6100054F3CC /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				C4C97D6E27F8634A000A5363 /* ButtonPad.swift in Sources */,
 				C46F49092801A0490045A895 /* SettingsView.swift in Sources */,
 				C4315CDC27F9DEFA005FB849 /* CustomToggle.swift in Sources */,
+				C433F23F280DA6100054F3CC /* DetailView.swift in Sources */,
 				C46F490B2801A2490045A895 /* HistoryView.swift in Sources */,
 				C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */,
 				C4173E0027F9008700A3211E /* CreateWorkView.swift in Sources */,

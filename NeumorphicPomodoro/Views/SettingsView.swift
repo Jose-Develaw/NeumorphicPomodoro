@@ -15,15 +15,15 @@ struct SettingsView: View {
     @EnvironmentObject var settings: SettingsWrapper
     
     var btnBack : some View { Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-            }) {
-               
-                Image(systemName: "arrowshape.turn.up.backward")
-                    .font(.title2)// set image here
-                    .foregroundStyle(LinearGradient(.purple, .pink))
-                
-            }
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+           
+            Image(systemName: "arrowshape.turn.up.backward")
+                .font(.title2)
+                .foregroundStyle(LinearGradient(.purple, .pink))
+            
         }
+    }
     
     var body: some View {
         ZStack{
