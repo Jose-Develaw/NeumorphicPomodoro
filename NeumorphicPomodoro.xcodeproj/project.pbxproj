@@ -12,6 +12,7 @@
 		C4315CDC27F9DEFA005FB849 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */; };
 		C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */; };
 		C433F23F280DA6100054F3CC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433F23E280DA6100054F3CC /* DetailView.swift */; };
+		C433F242280F177C0054F3CC /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C433F241280F177C0054F3CC /* StringExtensions.swift */; };
 		C45FAEF927F79861006EB3E8 /* NeumorphicPomodoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */; };
 		C45FAEFB27F79861006EB3E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FAEFA27F79861006EB3E8 /* ContentView.swift */; };
 		C45FAEFD27F79862006EB3E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C45FAEFC27F79862006EB3E8 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		C4315CDB27F9DEFA005FB849 /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
 		C4315CDE27FB8BBF005FB849 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		C433F23E280DA6100054F3CC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C433F241280F177C0054F3CC /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		C45FAEF527F79861006EB3E8 /* NeumorphicPomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeumorphicPomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C45FAEF827F79861006EB3E8 /* NeumorphicPomodoroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicPomodoroApp.swift; sourceTree = "<group>"; };
 		C45FAEFA27F79861006EB3E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		C433F240280F17640054F3CC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C433F241280F177C0054F3CC /* StringExtensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		C45FAEEC27F79861006EB3E8 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 		C45FAEF727F79861006EB3E8 /* NeumorphicPomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				C433F240280F17640054F3CC /* Utils */,
 				C4F042F82804B7B90090B402 /* CoreData */,
 				C46F490E2801A6B50045A895 /* Services */,
 				C46F490327FE23060045A895 /* ViewModels */,
@@ -294,6 +305,7 @@
 				C4315CDF27FB8BBF005FB849 /* NotificationDelegate.swift in Sources */,
 				C4F042F72804B7A40090B402 /* PomodoroSession+CoreDataProperties.swift in Sources */,
 				C46F49102801A6C70045A895 /* SettingsManager.swift in Sources */,
+				C433F242280F177C0054F3CC /* StringExtensions.swift in Sources */,
 				C46F49122801BE930045A895 /* CustomStepper.swift in Sources */,
 				C4C97D6C27F862B6000A5363 /* ColorExtensions.swift in Sources */,
 				C4315CDA27F9DEA3005FB849 /* ShallowConcaveView.swift in Sources */,

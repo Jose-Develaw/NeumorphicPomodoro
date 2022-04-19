@@ -34,6 +34,8 @@ extension ContentView {
             currentSession.currentRound += 1
             currentSession.longRestCadence = settings.settings.longRestCadence
             currentSession.longRestLength = settings.settings.longRestLengthSeconds
+             currentSession.basicRestLength = Double(settings.settings.basicRestLength)
+             currentSession.basicPomodoroLength = Double(settings.settings.basicPomodoroLength)
             currentSession.timeRemaining = Int(settings.settings.basicPomodoroLengthSeconds)
             currentSession.currentRoundInterval = settings.settings.basicPomodoroLengthSeconds
         }
@@ -84,7 +86,6 @@ extension ContentView {
          func getRoundFullTime(_ settings: SettingsWrapper) -> Double {
              return currentSession.currentIntervalType == .pomodoro ? settings.settings.basicPomodoroLengthSeconds : currentSession.currentRound % currentSession.longRestCadence == 0 ? currentSession.longRestLength : settings.settings.basicRestLengthSeconds
          }
-         
          
     }
 }

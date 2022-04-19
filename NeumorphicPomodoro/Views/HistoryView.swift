@@ -14,7 +14,15 @@ struct HistoryView: View {
     }
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var pomodoroSessions : FetchedResults<PomodoroSession>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var pomodoroSessions : FetchedResults<PomodoroSession>
+    
+    var groupedByDate : [Date: [PomodoroSession]] {
+        Dictionary(grouping: pomodoroSessions, by: {$0.unwrappedDate})
+    }
+    
+    var headers: [Date] {
+        groupedByDate.map({$0.key}).sorted().reversed()
+    }
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @GestureState private var dragOffset = CGSize.zero
@@ -33,73 +41,39 @@ struct HistoryView: View {
     var body: some View {
         VStack{
             List{
-                Section {
-                    ForEach(pomodoroSessions) { session in
-                        NavigationLink{
-                            DetailView(pomodoroSession: session)
-                        } label: {
-                            
-                            VStack (alignment: .leading){
-                                Text(session.unwrappedTask)
-                                    .font(.title3)
-                                Text(session.unwrappedType)
-                                    .foregroundColor(.gray)
+                ForEach(headers, id: \.self) { header in
+                    Section {
+                        ForEach(groupedByDate[header]!) { session in
+                            NavigationLink{
+                                DetailView(pomodoroSession: session)
+                            } label: {
+                                
+                                VStack (alignment: .leading){
+                                    Text(session.unwrappedTask)
+                                        .font(.title3)
+                                    Text(session.unwrappedType)
+                                        .foregroundColor(.gray)
+                                }
+                                .padding(10)
+                                
                             }
-                            .padding(10)
-                            
+                            .listRowSeparator(.visible)
+                            .listRowSeparatorTint(.gray, edges: .all)
+                            .listRowInsets(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 10))
+                            .listRowBackground(Color.offWhite)
                         }
-                        .listRowSeparator(.visible)
-                        .listRowSeparatorTint(.gray, edges: .all)
-                        .listRowInsets(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 10))
-                        .listRowBackground(Color.offWhite)
-                    }
-                    .onDelete(perform: deleteSessions)
-                } header: {
-                    HStack{
-                        Text("11/04/2022")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background(ShallowConcaveView(cornerRadius: 10))
-                    }
-                    .padding(.trailing)
-                    
-                }
-                
-                /// Repeat section
-                ///
-                
-                Section {
-                    ForEach(pomodoroSessions) { session in
-                        NavigationLink{
-                            DetailView(pomodoroSession: session)
-                        } label: {
-                            
-                            VStack (alignment: .leading){
-                                Text(session.unwrappedTask)
-                                    .font(.title3)
-                                Text(session.unwrappedType)
-                                    .foregroundColor(.gray)
-                            }
-                            .padding(10)
-                            
+                        .onDelete(perform: deleteSessions)
+                    } header: {
+                        HStack{
+                            Text(header.formatted(date: .abbreviated, time: .omitted).capitalizingFirstLetter())
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(ShallowConcaveView(cornerRadius: 10))
                         }
-                        .listRowSeparator(.visible)
-                        .listRowSeparatorTint(.gray, edges: .all)
-                        .listRowInsets(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 10))
-                        .listRowBackground(Color.offWhite)
+                        .padding(.trailing)
+                        
                     }
-                    .onDelete(perform: deleteSessions)
-                } header: {
-                    HStack{
-                        Text("11/04/2022")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background(ShallowConcaveView(cornerRadius: 10))
-                    }
-                    .padding(.trailing)
-                    
                 }
-                
             }
             .accentColor(.pink)
             .listStyle(.sidebar)

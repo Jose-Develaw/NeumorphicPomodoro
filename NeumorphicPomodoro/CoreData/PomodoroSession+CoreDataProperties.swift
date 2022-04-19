@@ -34,6 +34,10 @@ extension PomodoroSession {
     var unwrappedType : String {
         return type ?? ""
     }
+    
+    var unwrappedDate : Date {
+        Calendar.current.startOfDay(for: date ?? Date.distantPast)
+    }
 
 }
 

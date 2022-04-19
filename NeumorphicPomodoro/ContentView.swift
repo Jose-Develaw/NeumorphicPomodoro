@@ -230,15 +230,15 @@ struct ContentView: View {
         alertTitle = "Stop task"
         alertConfirmAction = {
             pomodoroState = .Empty
-            saveSession()
-            withAnimation{
+            Task {
+                await saveSession()
                 viewModel.currentSession = Session()
             }
         }
         showAlert = true
     }
     
-    func saveSession(){
+    func saveSession() async {
         print("Save")
         let session = PomodoroSession(context: moc)
         session.task = viewModel.currentSession.taskName
@@ -247,10 +247,12 @@ struct ContentView: View {
         session.numberOfRests = viewModel.currentSession.currentIntervalType == .rest ? Int16(viewModel.currentSession.currentRound) : Int16(viewModel.currentSession.currentRound - 1)
         session.pomodoroLength = Int16(viewModel.currentSession.basicPomodoroLength)
         session.restLenght = Int16(viewModel.currentSession.basicRestLength)
+        print("Rest length: ", viewModel.currentSession.basicRestLength )
         session.restCadence = Int16(viewModel.currentSession.longRestCadence)
         session.longRestLength = Int16(viewModel.currentSession.longRestLength)
         session.date = Date.now
         
+        print("Saved")
         try? moc.save()
     }
 }
