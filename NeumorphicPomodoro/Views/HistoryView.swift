@@ -51,6 +51,7 @@ struct HistoryView: View {
                                 VStack (alignment: .leading){
                                     Text(session.unwrappedTask)
                                         .font(.title3)
+                                        .lineLimit(1)
                                     Text(session.unwrappedType)
                                         .foregroundColor(.gray)
                                 }

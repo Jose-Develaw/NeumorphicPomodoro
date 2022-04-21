@@ -36,6 +36,7 @@ struct DetailView: View {
                 VStack(alignment: .center, spacing: 5){
                     Text(pomodoroSession.unwrappedTask.capitalizingFirstLetter())
                         .font(.title.bold())
+                        .multilineTextAlignment(.center)
                     Text(pomodoroSession.unwrappedType)
                         .font(.title3)
                         .foregroundColor(.gray)
