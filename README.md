@@ -18,7 +18,8 @@ This challenge gave me the opportunity of develop some skills, both at the codin
 
 - **SwiftUI** -> New boy in the block. I am enjoying a lot the learning process.
 - **Combine** -> Used for building smarter timers.
-- **CoreData** -> Persistence the powerful way.
+- **CoreData** -> Persistence the powerful way. Used for storing your sessions details.
+- **UserDefaults and Codable** -> For keeping track of your settings.
 
 
 <img src="https://user-images.githubusercontent.com/59582400/165351897-454f3027-39fc-4b0b-82b3-0bc67ef48512.png" width=35% height=35%>  <img src="https://user-images.githubusercontent.com/59582400/165351970-1c578fb2-aaca-4a47-b383-ffd6cfd1b94d.png" width=35% height=35%>
