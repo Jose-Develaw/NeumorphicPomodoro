@@ -3,7 +3,7 @@
 ## Yet another pomodoro app
 
 There are a bunch of pomodoro apps out there. Why in hell would you develop another one? Well the reason is simple: 
-This app was made as part of the the MoureDev's (by [Brais Moure](https://mouredev.com) awesome community [Monthly Challenge](https://github.com/mouredev/Monthly-App-Challenge-2022) (April 22')
+This app was made as part of the MoureDev's (by [Brais Moure](https://mouredev.com)) awesome community [Monthly Challenge](https://github.com/mouredev/Monthly-App-Challenge-2022) (April 22')
 
 ## How is it done?
 
