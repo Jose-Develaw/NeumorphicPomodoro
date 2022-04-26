@@ -21,18 +21,10 @@ This challenge gave me the opportunity of develop some skills, both at the codin
 - **CoreData** -> Persistence the powerful way.
 
 
-<img src="https://user-images.githubusercontent.com/59582400/165351897-454f3027-39fc-4b0b-82b3-0bc67ef48512.png" width=35% height=35%>
+<img src="https://user-images.githubusercontent.com/59582400/165351897-454f3027-39fc-4b0b-82b3-0bc67ef48512.png" width=35% height=35%>  <img src="https://user-images.githubusercontent.com/59582400/165351970-1c578fb2-aaca-4a47-b383-ffd6cfd1b94d.png" width=35% height=35%>
 
 
-<img src="https://user-images.githubusercontent.com/59582400/165351970-1c578fb2-aaca-4a47-b383-ffd6cfd1b94d.png" width=35% height=35%>
+<img src="https://user-images.githubusercontent.com/59582400/165352002-d4295576-08f2-449e-b2e2-6482b58eb135.png" width=35% height=35%>  <img src="https://user-images.githubusercontent.com/59582400/165352033-d15b84de-a33e-4b2f-a2e7-aef55b0a1466.png" width=35% height=35%>
 
 
-<img src="https://user-images.githubusercontent.com/59582400/165352002-d4295576-08f2-449e-b2e2-6482b58eb135.png" width=35% height=35%>
-
-
-<img src="https://user-images.githubusercontent.com/59582400/165352033-d15b84de-a33e-4b2f-a2e7-aef55b0a1466.png" width=35% height=35%>
-
-
-<img src="https://user-images.githubusercontent.com/59582400/165352074-5150ed00-95b2-41a0-b63e-b9d5f22798fb.png" width=35% height=35%>
-
-<img src="https://user-images.githubusercontent.com/59582400/165352103-851acf6b-7b4d-46da-9c39-01691382f4b4.png" width=35% height=35%>
+<img src="https://user-images.githubusercontent.com/59582400/165352074-5150ed00-95b2-41a0-b63e-b9d5f22798fb.png" width=35% height=35%>  <img src="https://user-images.githubusercontent.com/59582400/165352103-851acf6b-7b4d-46da-9c39-01691382f4b4.png" width=35% height=35%>
