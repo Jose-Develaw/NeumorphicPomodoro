@@ -35,6 +35,8 @@ This challenge gave me the opportunity of develop some skills, both at the codin
 - Multiple Device history synchro via CloudKit
 - MacOS support
 
+## Let's take a look
+
 <img src="https://user-images.githubusercontent.com/59582400/165351897-454f3027-39fc-4b0b-82b3-0bc67ef48512.png" width=35% height=35%>  <img src="https://user-images.githubusercontent.com/59582400/165351970-1c578fb2-aaca-4a47-b383-ffd6cfd1b94d.png" width=35% height=35%>
 
 
