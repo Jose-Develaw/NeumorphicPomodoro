@@ -29,7 +29,7 @@ This challenge gave me the opportunity of develop some skills, both at the codin
 
 - Achieve automatic scrolling titles when task names are longer than available space (teleprompter effect)
 
-## Next releases goals
+## Next releases' goals
 
 - Dark mode
 - Multiple Device history synchro via CloudKit
