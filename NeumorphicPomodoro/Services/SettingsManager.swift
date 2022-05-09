@@ -10,7 +10,6 @@ import Foundation
 class SettingsManager {
 
     static func getSettings() -> SettingsWrapper {
-        print("Settings called")
         guard let stringifySettings = UserDefaults.standard.data(forKey: "settings") else {
             return SettingsWrapper()
         }
