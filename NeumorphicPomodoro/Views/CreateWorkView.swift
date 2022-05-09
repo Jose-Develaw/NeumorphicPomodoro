@@ -20,6 +20,22 @@ struct CreateWorkView: View {
         ZStack{
             Color.offWhite
             VStack{
+                HStack{
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.title3)
+                            .foregroundStyle(LinearGradient(.purple, .pink))
+                    }
+                    .padding(.leading, 5)
+                    Spacer()
+                }
+                Spacer()
+            }
+            .padding()
+           
+            VStack{
                 VStack{
                     Text("Create new task")
                         .font(.title2.bold())
