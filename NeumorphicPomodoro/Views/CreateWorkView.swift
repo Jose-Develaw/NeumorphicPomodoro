@@ -71,6 +71,7 @@ struct CreateWorkView: View {
             }
         }
         .navigationBarItems(leading: btnClose)
+        .navigationBarTitleDisplayMode(.inline)
         .background(Color.offWhite.edgesIgnoringSafeArea(.all))
     }
     
