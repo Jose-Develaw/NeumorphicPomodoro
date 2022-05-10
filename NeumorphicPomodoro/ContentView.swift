@@ -141,7 +141,10 @@ struct ContentView: View {
                 .transition(.slide)
             }
             .sheet(isPresented: $isCreationPresented){
-                CreateWorkView(pomodoroState: $pomodoroState, viewModel: viewModel)
+                NavigationView{
+                    CreateWorkView(pomodoroState: $pomodoroState, viewModel: viewModel)
+                }
+                
             }
             .alert(alertTitle, isPresented: $showAlert){
                 Button("Confirm", role: .none, action: alertConfirmAction)

@@ -16,25 +16,19 @@ struct CreateWorkView: View {
         viewModel.currentSession.taskName.isEmpty
     }
     
+    var btnClose : some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "xmark")
+                .font(.title3)
+                .foregroundStyle(LinearGradient(.purple, .pink))
+        }
+    }
+    
     var body: some View {
         ZStack{
             Color.offWhite
-            VStack{
-                HStack{
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.title3)
-                            .foregroundStyle(LinearGradient(.purple, .pink))
-                    }
-                    .padding(.leading, 5)
-                    Spacer()
-                }
-                Spacer()
-            }
-            .padding()
-           
             VStack{
                 VStack{
                     Text("Create new task")
@@ -72,14 +66,11 @@ struct CreateWorkView: View {
                     .buttonStyle(NeumorphicButtonStyle(width: 70, heigth: 70, shape: RoundedRectangle(cornerRadius: 20)))
                     .disabled(disabled)
                 }
-                .padding()
-                
+                .padding(.horizontal)
                 Spacer()
-                
-                
             }
-            .padding()
         }
+        .navigationBarItems(leading: btnClose)
         .background(Color.offWhite.edgesIgnoringSafeArea(.all))
     }
     
